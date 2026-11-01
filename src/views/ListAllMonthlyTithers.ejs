@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/css/visualizer.css">
     <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="stylesheet" href="/assets/css/register.css">
-    <title>Visualizar Dizimistas</title>
+    <title>VISUALIZAR PARTICIPANTES</title>
 </head>
 <body>
     
@@ -17,7 +16,7 @@
         <div class="visualizerArea">
 
                 <div class="visualizerInfos">
-                    <h2>Área para visualizar, editar ou excluir dizimistas cadastrados</h2>
+                    <h2>Área para visualizar ou excluir participantes do sorteio desse mês</h2>
                 </div>
 
                 <% if (dizimistas.length > 0) { %>
@@ -60,10 +59,10 @@
                     <% } else { %>
 
                         <div class="listAllRegisterWarning">
-                            <h1>Nenhum dizimista cadastrado até o momento</h1>
+                            <h1>Nenhum participante cadastrado até o momento</h1>
     
-                            <h2 class="registerNewTitherAdvice">Para cadastrar dizimistas, clique no botão abaixo:</h2>
-                            <a href="/cadastro-geral">Cadastrar Dizimistas</a>
+                            <h2 class="registerNewTitherAdvice">Para cadastrar participantes do sorteio, clique no botão abaixo:</h2>
+                            <a href="/cadastro-mensal">Cadastrar Participantes</a>
                         </div>
 
                     <% } %>
