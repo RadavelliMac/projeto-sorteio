@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/css/visualizer.css">
     <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/register.css">
     <title>Visualizar Dizimistas</title>
 </head>
 <body>
@@ -46,10 +47,10 @@
                                     <td> <%= dizimista.dizimista_numero_casa %> </td>
                                     <td> <%= dizimista.dizimista_telefone %> </td>
                                     <td>
-                                        <a href="">
+                                        <a href="/cadastro-geral/editar/<%= dizimista.dizimista_id %>">
                                             <img class="image" src="/assets/IMAGES/edit.svg" alt="">
                                         </a>
-                                        <a class="delete" data-id="<%= dizimista.dizimista_id %>" href="">
+                                        <a class="delete" data-id="<%= dizimista.dizimista_id %>" href="#">
                                             <img data-id="<%= dizimista.dizimista_id %>" class="image delete" src="/assets/IMAGES/delete.svg" alt="">
                                         </a>
                                     </td>
@@ -58,6 +59,7 @@
                             
                         </tbody>
                     </table>
+
 
                     <% } else { %>
 
@@ -68,6 +70,21 @@
                             <a href="/cadastro-geral">Cadastrar Dizimistas</a>
                         </div>
 
+                    <% } %>
+
+
+                    <% if (messages.success && messages.success.length > 0) { %>
+                        <div class="successMessage">
+                            <%= messages.success %>
+                        </div>
+                    <% } %>
+
+                    <% if (messages.error && messages.error.length > 0) { %>
+                        <div class="errorMessage">
+                            <% messages.error.forEach(err => { %>
+                                <p style="margin: 0;"><%= err %></p>
+                            <% }) %>
+                        </div>
                     <% } %>
 
         </div>

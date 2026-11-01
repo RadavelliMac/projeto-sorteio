@@ -1,5 +1,5 @@
 .register h1 {
-  margin-top: 40px;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 
@@ -25,11 +25,15 @@
 
 .inputs input {
   display: block;
-  margin-bottom: 40px;
+  margin-bottom: 25px;
   width: 250px;
   height: 25px;
   border-radius: 5px;
   border: 2px solid rgb(118, 162, 177);
+}
+
+label {
+  text-align: center;
 }
 
 input::placeholder {
@@ -65,6 +69,74 @@ input::placeholder {
 }
 
 .visualizerInfos a:hover {
+  border: 2px solid rgb(8, 38, 67);
+  background-color: rgb(73, 136, 158);
+}
+
+.successMessage {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 10px;
+  margin-bottom: 15px;
+  margin-top: 20px;
+  border-radius: 10px;
+  width: 400px;
+  text-align: center;
+  display: grid;
+  place-self: center;
+}
+
+.errorMessage {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  width: 400px;
+  text-align: center;
+  display: grid;
+  place-self: center;
+}
+
+.updateInfos {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  text-align: center;
+  width: 50%;
+  display: grid;
+  place-self: center;
+}
+
+.updateInfos h1 {
+  margin-bottom: 20px;
+}
+
+.ListTitherRequiredWarning {
+  margin-bottom: 20px;
+  margin-top: 120px;
+  text-align: center;
+  width: 50%;
+  display: grid;
+  place-self: center;
+}
+
+.ListTitherRequiredWarning h1,
+h2 {
+  margin-bottom: 40px;
+}
+
+.ListTitherRequiredWarning a {
+  color: white;
+  padding: 40px;
+  background-color: rgb(147, 179, 189);
+  border-radius: 20px;
+  border: 2px solid rgb(69, 113, 155);
+  width: 40%;
+  display: grid;
+  place-self: center;
+}
+
+.ListTitherRequiredWarning a:hover {
   border: 2px solid rgb(8, 38, 67);
   background-color: rgb(73, 136, 158);
 }

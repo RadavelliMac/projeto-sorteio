@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/css/visualizer.css">
     <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/register.css">
     <title>Visualizar Dizimistas</title>
 </head>
 <body>
@@ -38,12 +39,15 @@
                     <tbody>
                             <% dizimistas.forEach(dizimista => { %>
                                 <tr>
-                                    <td> <%= dizimista.dizimista_do_mes_id %> </td>
+                                    <td> <%= dizimista.dizimista_id %> </td>
+                                    <td> <%= dizimista.dizimista_nome %> </td>
+                                    <td> <%= dizimista.dizimista_sobrenome %> </td>
+                                    <td> <%= dizimista.dizimista_bairro %> </td>
+                                    <td> <%= dizimista.dizimista_rua %> </td>
+                                    <td> <%= dizimista.dizimista_numero_casa %> </td>
+                                    <td> <%= dizimista.dizimista_telefone %> </td>
                                     <td>
-                                        <a href="">
-                                            <img class="image" src="/assets/IMAGES/edit.svg" alt="">
-                                        </a>
-                                        <a class="delete" data-id="<%= dizimista.dizimista_id %>" href="">
+                                        <a class="delete" data-id="<%= dizimista.dizimista_id %>" href="#">
                                             <img data-id="<%= dizimista.dizimista_id %>" class="image delete" src="/assets/IMAGES/delete.svg" alt="">
                                         </a>
                                     </td>
@@ -64,6 +68,20 @@
 
                     <% } %>
 
+                    <% if (messages.success && messages.success.length > 0) { %>
+                        <div class="successMessage">
+                            <%= messages.success %>
+                        </div>
+                    <% } %>
+
+                    <% if (messages.error && messages.error.length > 0) { %>
+                        <div class="errorMessage">
+                            <% messages.error.forEach(err => { %>
+                                <p style="margin: 0;"><%= err %></p>
+                            <% }) %>
+                        </div>
+                    <% } %>
+
         </div>
 
     </div>
@@ -74,7 +92,7 @@
             if (e.target.classList.contains('delete')) {
                 let id = e.target.getAttribute('data-id')
                 let confirmation = window.confirm('Tem certeza que deseja excluir?')
-                if (confirmation) window.location.href = `/cadastro-geral/editar/excluir/${id}`
+                if (confirmation) window.location.href = `/cadastro-mensal/editar/excluir/${id}`
                 else alert('Exclusão cancelada')
             }
         });

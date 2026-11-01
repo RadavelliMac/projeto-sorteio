@@ -62,3 +62,44 @@ input {
   display: grid;
   place-self: center;
 }
+
+.VisualizeMonthlyPrizeDrawTithers a {
+  color: white;
+  padding: 40px;
+  background-color: rgb(147, 179, 189);
+  border-radius: 20px;
+  border: 2px solid rgb(69, 113, 155);
+  width: 40%;
+  display: grid;
+  place-self: center;
+  margin-top: 40px;
+}
+
+.VisualizeMonthlyPrizeDrawTithers a:hover {
+  border: 2px solid rgb(8, 38, 67);
+  background-color: rgb(73, 136, 158);
+}
+
+.successMessage {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 10px;
+  width: 400px;
+  text-align: center;
+  display: grid;
+  place-self: center;
+}
+
+.errorMessage {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 10px;
+  width: 400px;
+  text-align: center;
+  display: grid;
+  place-self: center;
+}

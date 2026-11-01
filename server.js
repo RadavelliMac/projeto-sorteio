@@ -1,4 +1,6 @@
 const express = require("express");
+const session = require("express-session");
+const flash = require("connect-flash");
 const path = require("path");
 
 const dotenv = require("dotenv").config({
@@ -8,8 +10,18 @@ const dotenv = require("dotenv").config({
 const { setupDatabase } = require("./src/database/database");
 
 const PORT = process.env.PORT;
+const SECRET_KEY = process.env.SECRET_KEY;
 
 const app = express();
+
+app.use(
+  session({
+    secret: SECRET_KEY,
+    resave: false,
+    saveUninitialized: false,
+  }),
+);
+app.use(flash());
 
 const routes = require("./routes");
 

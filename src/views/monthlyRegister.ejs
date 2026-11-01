@@ -22,13 +22,27 @@
             <form action="/cadastro-mensal" method="post"> 
                 <div class="inputs">
                     <label for="tither">Número do dizimista (ID único): </label>
-                    <input type="number" name="tither" id="titherNumber">
+                    <input type="number" name="titherId" id="titherNumber" required>
                 </div>
                 <div class="inputs">
                     <input class="submit" type="submit" value="Cadastrar">
                 </div>
             </form>
         </div>
+
+        <% if (messages.success && messages.success.length > 0) { %>
+            <div class="successMessage">
+                <%= messages.success %>
+            </div>
+        <% } %>
+
+        <% if (messages.error && messages.error.length > 0) { %>
+            <div class="errorMessage">
+                <% messages.error.forEach(err => { %>
+                    <p style="margin: 0;"><%= err %></p>
+                <% }) %>
+            </div>
+        <% } %>
 
         <div class="VisualizeMonthlyPrizeDrawTithers">
             <h2>Para visualizar os dizimistas que participarão do sorteio esse mês, clique no botão abaixo</h2>

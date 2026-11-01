@@ -24,14 +24,15 @@
 
                 <form action="" method="post">
 
+
                     <div class="inputs">
                         <label for="name">Nome:</label>
-                        <input type="text" name="name" placeholder="Ex: José" required>
+                        <input type="text" name="name" placeholder="Ex: José" value="" required>
                     </div>
 
                     <div class="inputs">
                         <label for="name">Sobrenome:</label>
-                        <input type="text" name="surname" placeholder="Ex: José" required>
+                        <input type="text" name="surname" placeholder="Ex: José" value="" required>
                     </div>
 
                     <div class="inputs">
@@ -41,22 +42,36 @@
 
                     <div class="inputs">
                         <label for="street">Rua:</label>
-                        <input type="text" name="street" placeholder="Ex: Adolfo Morbis" required>
+                        <input type="text" name="street" placeholder="Ex: Adolfo Morbis" value="" required>
                     </div>
 
                     <div class="inputs">
                         <label for="number">Número:</label>
-                        <input type="number" min="0" name="housenumber" placeholder="400" required>
+                        <input type="number" min="0" name="housenumber" placeholder="400" value="" required>
                     </div>
 
                     <div class="inputs">
                         <label for="number">Telefone:</label>
-                        <input type="text" name="Telefone" placeholder="4002-8922" required>
+                        <input type="text" name="Telefone" placeholder="4002-8922" >
                     </div>
 
                     <div class="inputs">
                         <input type="submit" value="Cadastrar" class="submit">
                     </div>
+
+                    <% if (messages.success && messages.success.length > 0) { %>
+                        <div class="successMessage">
+                            <%= messages.success %>
+                        </div>
+                    <% } %>
+
+                    <% if (messages.error && messages.error.length > 0) { %>
+                        <div class="errorMessage">
+                            <% messages.error.forEach(err => { %>
+                                <p style="margin: 0;"><%= err %></p>
+                            <% }) %>
+                        </div>
+                    <% } %>
 
                 </form>
 
