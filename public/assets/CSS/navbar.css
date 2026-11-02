@@ -4,9 +4,9 @@ nav {
   justify-content: space-between;
 
   height: 80px;
-  width: 100vw;
+  width: 100%;
 
-  background-color: rgb(101, 167, 189);
+  background-color: rgb(69, 35, 35);
 }
 
 nav a {
@@ -15,6 +15,11 @@ nav a {
   color: white;
 }
 
-nav .churchImg {
+nav .churchImage {
   margin-left: 20px;
+}
+
+.churchImage img {
+  width: 70px;
+  height: 70px;
 }

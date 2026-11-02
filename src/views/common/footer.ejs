@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/assets/css/footer.css">
+</head>
+<body>
+<footer>
+    <div class="footer-content">
+        
+        <div class="footer-block">
+            <div class="footer-logo">
+                <img src="/assets/images/footer.png" alt="Logo Paróquia" draggable="false">
+            </div>
+            <p>Nossa Senhora da Esperança</p>
+        </div>
+
+        <div class="footer-block">
+            <div class="footer-logo">
+                <img src="/assets/images/archdiocese.svg" alt="Logo Arquidiocese" draggable="false">
+            </div>
+            <p>Arquidiocese de Joinville</p>
+        </div>
+
+        <div class="footer-credits">
+            <p>Desenvolvido por: Universidade Da Região De Joinville - Univille</p>
+            <p>© <span class="date"></span></p>
+        </div>
+    </div>
+
+    <script>
+        const getDateElement = document.querySelector(".date");
+        getDateElement.innerHTML = new Date().getFullYear();
+    </script>
+</footer>
+</body>
+</html>

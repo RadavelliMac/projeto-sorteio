@@ -11,6 +11,10 @@
   color: rgb(147, 179, 189);
 }
 
+.registerTither {
+  margin-bottom: 100px;
+}
+
 .register {
   text-align: center;
   display: flex;

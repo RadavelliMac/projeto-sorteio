@@ -1,23 +1,178 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SORTEIO GERAL</title>
-    <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="stylesheet" href="/assets/css/prizedrawGeneral.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SORTEIO GERAL</title>
+  <link rel="stylesheet" href="/assets/css/roulette.css">
 </head>
 <body>
+    <%- include('common/navbar') %>
 
-    <div class="PrizedrawTither">
+  <div class="container">
 
-        <%- include('common/navbar') %>
 
-        <div class="monthlyRegister">   
-            <h1>SORTEIO GERAL</h1>
-        </div>
 
+    <h2>SORTEIO GERAL</h2>
+    <h2>Informe o número máximo de participantes para gerar a roleta.</h2>
+
+    <div class="input-group">
+      <label for="maxNumber">Total de Participantes (mínimo 2):</label>
+      <input type="number" id="maxNumber" min="2" placeholder="Ex: 50">
+      <button id="btnSpin" disabled>Girar Roleta!</button>
     </div>
 
+    <div class="wheel-container">
+      <!-- Ponteiro da Roleta -->
+      <div class="pointer"></div>
+      <!-- Canvas da Roleta -->
+      <canvas id="wheelCanvas" width="400" height="400"></canvas>
+    </div>
+
+    <div id="resultModal" class="result">
+      <span>Número Sorteado:</span>
+      <h1 id="winnerNumber">-</h1>
+    </div>
+  </div>
+
+
+
+  <script>
+
+const canvas = document.getElementById('wheelCanvas');
+const ctx = canvas.getContext('2d');
+const inputMaxNumber = document.getElementById('maxNumber');
+const btnSpin = document.getElementById('btnSpin');
+const winnerNumberDisplay = document.getElementById('winnerNumber');
+
+// 8 Cores vibrantes para alternância das fatias
+const PALETTE = [
+  '#3498db', '#e67e22', '#9b59b6', '#f1c40f',
+  '#1abc9c', '#e74c3c', '#34495e', '#2ecc71'
+];
+
+let totalSlices = 2; // Padrão inicial: 2 fatias
+let currentAngle = 0; // Ângulo atual de rotação da roleta
+let isSpinning = false;
+
+// Desenha a roleta no Canvas
+function drawWheel(slices) {
+  const width = canvas.width;
+  const height = canvas.height;
+  const centerX = width / 2;
+  const centerY = height / 2;
+  const radius = width / 2;
+  const sliceAngle = (2 * Math.PI) / slices;
+
+  ctx.clearRect(0, 0, width, height);
+
+  for (let i = 0; i < slices; i++) {
+    const startAngle = i * sliceAngle;
+    const endAngle = startAngle + sliceAngle;
+
+    // Seleciona a cor alternando entre as 8 cores da paleta
+    ctx.fillStyle = PALETTE[i % PALETTE.length];
+    
+    ctx.beginPath();
+    ctx.moveTo(centerX, centerY);
+    ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = '#ffffff';
+    ctx.stroke();
+
+    // Desenha o número na fatia
+    ctx.save();
+    ctx.translate(centerX, centerY);
+    ctx.rotate(startAngle + sliceAngle / 2);
+    ctx.textAlign = 'right';
+    ctx.fillStyle = '#ffffff';
+    
+    // Ajusta tamanho da fonte conforme a quantidade de fatias
+    const fontSize = slices > 30 ? 12 : (slices > 15 ? 16 : 22);
+    ctx.font = `bold ${fontSize}px sans-serif`;
+    
+    // Exibe o número da fatia (1 até N)
+    ctx.fillText(`${i + 1}`, radius - 20, 6);
+    ctx.restore();
+  }
+}
+
+// Atualiza a roleta ao alterar o input
+inputMaxNumber.addEventListener('input', (e) => {
+  const value = parseInt(e.target.value, 10);
+
+  if (!isNaN(value) && value >= 2) {
+    totalSlices = value;
+    btnSpin.disabled = false;
+  } else {
+    totalSlices = 2; // Se menor que 2 ou vazio, volta para 2 fatias
+    btnSpin.disabled = true;
+  }
+  
+  winnerNumberDisplay.textContent = '-';
+  drawWheel(totalSlices);
+});
+
+// Lógica de Giro da Roleta
+btnSpin.addEventListener('click', () => {
+  if (isSpinning || totalSlices < 2) return;
+
+  isSpinning = true;
+  btnSpin.disabled = true;
+  inputMaxNumber.disabled = true;
+  winnerNumberDisplay.textContent = '...';
+
+  // Define um número de giros completos + um ângulo aleatório
+  const extraDegrees = Math.floor(Math.random() * 360);
+  const totalRotationDegrees = 360 * 5 + extraDegrees; // 5 voltas completas + offset
+  const duration = 4000; // 4 segundos de animação
+  const startTimestamp = performance.now();
+
+  function animateWheel(now) {
+    const elapsed = now - startTimestamp;
+    const progress = Math.min(elapsed / duration, 1);
+    
+    // Easing out quadratic (desaceleração suave no final)
+    const easeOut = 1 - Math.pow(1 - progress, 3);
+    const rotation = easeOut * totalRotationDegrees;
+
+    canvas.style.transform = `rotate(${rotation}deg)`;
+
+    if (progress < 1) {
+      requestAnimationFrame(animateWheel);
+    } else {
+      isSpinning = false;
+      inputMaxNumber.disabled = false;
+      btnSpin.disabled = false;
+      
+      // Ajusta rotação acumulada para cálculo correto do vencedor
+      currentAngle = rotation % 360;
+      calculateWinner(currentAngle, totalSlices);
+    }
+  }
+
+  requestAnimationFrame(animateWheel);
+});
+
+// Calcula qual fatia parou apontando para o topo (ponteiro em 270 deg / -90 deg)
+function calculateWinner(finalAngleDeg, slices) {
+  const degreesPerSlice = 360 / slices;
+  
+  // O ponteiro está no topo (270 graus no sistema do Canvas)
+  // Calculamos a posição real da fatia após a rotação
+  const normalizedDegree = (360 - (finalAngleDeg % 360) + 270) % 360;
+  const winningIndex = Math.floor(normalizedDegree / degreesPerSlice);
+  
+  const winningNumber = winningIndex + 1;
+  winnerNumberDisplay.textContent = winningNumber;
+}
+
+// Inicializa com 2 fatias ao carregar
+drawWheel(totalSlices);
+
+  </script>
 </body>
 </html>
