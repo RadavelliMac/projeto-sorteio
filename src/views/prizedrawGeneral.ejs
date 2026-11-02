@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SORTEIO GERAL</title>
-  <link rel="stylesheet" href="/assets/css/roulette.css">
+  <link rel="stylesheet" href="/assets/CSS/roulette.css">
 </head>
 <body>
     <%- include('common/navbar') %>
@@ -23,9 +23,7 @@
     </div>
 
     <div class="wheel-container">
-      <!-- Ponteiro da Roleta -->
       <div class="pointer"></div>
-      <!-- Canvas da Roleta -->
       <canvas id="wheelCanvas" width="400" height="400"></canvas>
     </div>
 
@@ -35,6 +33,7 @@
     </div>
   </div>
 
+        <%- include('common/footer') %>
 
 
   <script>
@@ -45,17 +44,15 @@ const inputMaxNumber = document.getElementById('maxNumber');
 const btnSpin = document.getElementById('btnSpin');
 const winnerNumberDisplay = document.getElementById('winnerNumber');
 
-// 8 Cores vibrantes para alternância das fatias
 const PALETTE = [
   '#3498db', '#e67e22', '#9b59b6', '#f1c40f',
   '#1abc9c', '#e74c3c', '#34495e', '#2ecc71'
 ];
 
-let totalSlices = 2; // Padrão inicial: 2 fatias
-let currentAngle = 0; // Ângulo atual de rotação da roleta
+let totalSlices = 2;
+let currentAngle = 0;
 let isSpinning = false;
 
-// Desenha a roleta no Canvas
 function drawWheel(slices) {
   const width = canvas.width;
   const height = canvas.height;
@@ -70,7 +67,6 @@ function drawWheel(slices) {
     const startAngle = i * sliceAngle;
     const endAngle = startAngle + sliceAngle;
 
-    // Seleciona a cor alternando entre as 8 cores da paleta
     ctx.fillStyle = PALETTE[i % PALETTE.length];
     
     ctx.beginPath();
@@ -83,24 +79,20 @@ function drawWheel(slices) {
     ctx.strokeStyle = '#ffffff';
     ctx.stroke();
 
-    // Desenha o número na fatia
     ctx.save();
     ctx.translate(centerX, centerY);
     ctx.rotate(startAngle + sliceAngle / 2);
     ctx.textAlign = 'right';
     ctx.fillStyle = '#ffffff';
     
-    // Ajusta tamanho da fonte conforme a quantidade de fatias
     const fontSize = slices > 30 ? 12 : (slices > 15 ? 16 : 22);
     ctx.font = `bold ${fontSize}px sans-serif`;
     
-    // Exibe o número da fatia (1 até N)
     ctx.fillText(`${i + 1}`, radius - 20, 6);
     ctx.restore();
   }
 }
 
-// Atualiza a roleta ao alterar o input
 inputMaxNumber.addEventListener('input', (e) => {
   const value = parseInt(e.target.value, 10);
 
@@ -108,7 +100,7 @@ inputMaxNumber.addEventListener('input', (e) => {
     totalSlices = value;
     btnSpin.disabled = false;
   } else {
-    totalSlices = 2; // Se menor que 2 ou vazio, volta para 2 fatias
+    totalSlices = 2;
     btnSpin.disabled = true;
   }
   
@@ -116,7 +108,6 @@ inputMaxNumber.addEventListener('input', (e) => {
   drawWheel(totalSlices);
 });
 
-// Lógica de Giro da Roleta
 btnSpin.addEventListener('click', () => {
   if (isSpinning || totalSlices < 2) return;
 
@@ -125,17 +116,15 @@ btnSpin.addEventListener('click', () => {
   inputMaxNumber.disabled = true;
   winnerNumberDisplay.textContent = '...';
 
-  // Define um número de giros completos + um ângulo aleatório
   const extraDegrees = Math.floor(Math.random() * 360);
-  const totalRotationDegrees = 360 * 5 + extraDegrees; // 5 voltas completas + offset
-  const duration = 4000; // 4 segundos de animação
+  const totalRotationDegrees = 360 * 5 + extraDegrees;
+  const duration = 4000;
   const startTimestamp = performance.now();
 
   function animateWheel(now) {
     const elapsed = now - startTimestamp;
     const progress = Math.min(elapsed / duration, 1);
     
-    // Easing out quadratic (desaceleração suave no final)
     const easeOut = 1 - Math.pow(1 - progress, 3);
     const rotation = easeOut * totalRotationDegrees;
 
@@ -148,7 +137,6 @@ btnSpin.addEventListener('click', () => {
       inputMaxNumber.disabled = false;
       btnSpin.disabled = false;
       
-      // Ajusta rotação acumulada para cálculo correto do vencedor
       currentAngle = rotation % 360;
       calculateWinner(currentAngle, totalSlices);
     }
@@ -157,12 +145,9 @@ btnSpin.addEventListener('click', () => {
   requestAnimationFrame(animateWheel);
 });
 
-// Calcula qual fatia parou apontando para o topo (ponteiro em 270 deg / -90 deg)
 function calculateWinner(finalAngleDeg, slices) {
   const degreesPerSlice = 360 / slices;
   
-  // O ponteiro está no topo (270 graus no sistema do Canvas)
-  // Calculamos a posição real da fatia após a rotação
   const normalizedDegree = (360 - (finalAngleDeg % 360) + 270) % 360;
   const winningIndex = Math.floor(normalizedDegree / degreesPerSlice);
   
@@ -170,7 +155,6 @@ function calculateWinner(finalAngleDeg, slices) {
   winnerNumberDisplay.textContent = winningNumber;
 }
 
-// Inicializa com 2 fatias ao carregar
 drawWheel(totalSlices);
 
   </script>

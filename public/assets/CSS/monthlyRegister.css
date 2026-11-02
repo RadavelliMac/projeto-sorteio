@@ -34,7 +34,11 @@ input {
   margin-bottom: 40px;
   width: 250px;
   height: 25px;
-  border: 2px solid rgb(118, 162, 177);
+  border: 1px solid rgb(80, 44, 44) !important;
+}
+
+#titherNumber:focus {
+  border: 2px solid rgb(42, 24, 24) !important;
 }
 
 .submit {
@@ -43,16 +47,16 @@ input {
   width: 150px !important;
   cursor: pointer;
   transition: 500ms;
-  background-color: rgb(147, 179, 189);
-  border: 2px solid rgb(69, 113, 155) !important;
+  background-color: rgb(138, 81, 81);
+  border: 2px solid rgb(80, 44, 44) !important;
   color: white;
   font-size: 20px;
 }
 
 .submit:hover {
   transform: translateY(-8px);
-  border: 2px solid rgb(8, 38, 67);
-  background-color: rgb(73, 136, 158);
+  border: 2px solid rgb(40, 20, 20);
+  background-color: rgb(90, 44, 44);
 }
 
 .VisualizeMonthlyPrizeDrawTithers {
@@ -65,10 +69,11 @@ input {
 
 .VisualizeMonthlyPrizeDrawTithers a {
   color: white;
-  padding: 40px;
-  background-color: rgb(147, 179, 189);
+  padding: 20px;
+  background-color: rgb(138, 81, 81);
+  border: 2px solid rgb(80, 44, 44);
   border-radius: 20px;
-  border: 2px solid rgb(69, 113, 155);
+
   width: 40%;
   display: grid;
   place-self: center;
@@ -76,8 +81,8 @@ input {
 }
 
 .VisualizeMonthlyPrizeDrawTithers a:hover {
-  border: 2px solid rgb(8, 38, 67);
-  background-color: rgb(73, 136, 158);
+  border: 2px solid rgb(40, 20, 20);
+  background-color: rgb(90, 44, 44);
 }
 
 .successMessage {

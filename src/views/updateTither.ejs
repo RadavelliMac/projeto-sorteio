@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=[device-width], initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/CSS/style.css">
     <link rel="stylesheet" href="/assets/CSS/register.css">
     <title>ATUALIZAR CADASTRO DE DIZIMISTA</title>
@@ -48,7 +48,7 @@
     
                 <div class="inputs">
                     <label for="street">Rua:</label>
-                    <input type="text" name="street" placeholder="Ex: Adolfo Morbis" value=<%= dizimista.dizimista_rua %> required>
+                    <input type="text" name="street" placeholder="Ex: Adolfo Morbis" value="<%= dizimista.dizimista_rua %>" required>
                 </div>
     
                 <div class="inputs">
@@ -98,7 +98,7 @@
 
     </div>
 
-
+        <%- include('common/footer') %>
 
 </body>
 </html>

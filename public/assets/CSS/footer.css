@@ -1,31 +1,48 @@
-footer {
-  width: 100%;
-  height: 140px;
-  background-color: rgb(69, 35, 35);
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  color: white;
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin-top: 0;
 }
 
-/* Container principal para alinhar tudo lado a lado */
+body > .home,
+body > .registerTither,
+body > .cadastro,
+body > .visualizer,
+body > .updateTither,
+body > .PrizedrawTither,
+body > .container {
+  flex: 1 0 auto;
+}
+
+footer {
+  width: 100%;
+  min-height: 140px;
+  box-sizing: border-box;
+  background-color: rgb(69, 35, 35);
+  position: static;
+  flex: 0 0 auto;
+  margin-top: 32px;
+  color: white;
+  padding: 12px 16px;
+}
+
 .footer-content {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: 12px 40px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Blocos da Igreja e Arquidiocese (Imagem em cima, texto embaixo) */
 .footer-block {
-  margin-top: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  min-width: 0;
 }
 
 .footer-logo img {
@@ -33,25 +50,38 @@ footer {
   height: 50px;
   object-fit: contain;
   margin-bottom: 5px;
+  max-width: 100%;
 }
 
 .footer-block p {
   font-size: 14px;
   font-weight: 500;
   margin: 0;
+  overflow-wrap: anywhere;
 }
 
-/* Bloco de créditos da Univille / FURJ / Ano (um abaixo do outro) */
 .footer-credits {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   font-size: 13px;
   gap: 2px;
-  position: absolute;
-  top: 100px;
+  flex: 1 0 100%;
 }
 
 .footer-credits p {
   margin: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 480px) {
+  .footer-content {
+    gap: 12px;
+  }
+
+  .footer-block {
+    flex: 1 1 120px;
+  }
 }

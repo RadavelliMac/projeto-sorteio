@@ -19,3 +19,10 @@ a:hover {
   transform: translateY(-10px);
   color: rgb(220, 205, 205);
 }
+
+input {
+  border: 1px solid rgb(80, 44, 44) !important;
+}
+input:focus {
+  border: 2px solid rgb(42, 24, 24) !important;
+}
