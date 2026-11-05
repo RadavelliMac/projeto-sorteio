@@ -34,7 +34,7 @@
 
                 <div class="inputs">
                     <label for="name">Código:</label>
-                    <input type="number" name="code" placeholder="16547" value="<%= dizimista.dizimista_id %>" required>
+                    <input type="number" name="code" placeholder="Ex: 16547" value="<%= dizimista.dizimista_id %>" required>
                 </div>
 
                 <div class="inputs">
@@ -70,9 +70,9 @@
                 <div class="inputs">
                     <label for="category">Categoria:</label>
                     <select name="category" id="category" required>
-                        <option class="categoryOption" value="Masculino">Masculino</option>
-                        <option class="categoryOption" value="Feminino">Feminino</option>
-                        <option class="categoryOption" value="Infantil">Infantil</option>
+                        <option value="Masculino" <%= dizimista.dizimista_categoria === 'Masculino' ? 'selected' : '' %>>Masculino</option>
+                        <option value="Feminino" <%= dizimista.dizimista_categoria === 'Feminino' ? 'selected' : '' %>>Feminino</option>
+                        <option value="Infantil" <%= dizimista.dizimista_categoria === 'Infantil' ? 'selected' : '' %>>Infantil</option>
                     </select>
                 </div>
     
@@ -95,19 +95,19 @@
     
             </form>
 
-                    <% } else { %>
+                <% } else { %>
 
-                        <div class="ListTitherRequiredWarning">
-                            <h1>Nenhum dizimista informado</h1>
-    
-                            <h2 class="registerNewTitherAdvice">
-                                Nenhum dizimista foi encontrado. 
-                                Verifique o ID correto ou clique no botão abaixo para cadastrar um dizimista:
-                            </h2>
-                            <a href="/cadastro-geral">Cadastrar Dizimistas</a>
-                        </div>
+                    <div class="ListTitherRequiredWarning">
+                        <h1>Nenhum dizimista informado</h1>
 
-                    <% } %>
+                        <h2 class="registerNewTitherAdvice">
+                            Nenhum dizimista foi encontrado. 
+                            Verifique o ID correto ou clique no botão abaixo para cadastrar um dizimista:
+                        </h2>
+                        <a href="/cadastro-geral">Cadastrar Dizimistas</a>
+                    </div>
+
+                <% } %>
 
         </div>
 
