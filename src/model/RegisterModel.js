@@ -21,6 +21,9 @@ class TitherModel {
   valida() {
     this.limpaDados();
 
+    if (!this.body.code || isNaN(this.body.code)) {
+      this.errors.push("O código deve ser um valor numérico válido.");
+    }
     if (!this.body.name) this.errors.push("O nome é obrigatório.");
     if (!this.body.surname) this.errors.push("O sobrenome é obrigatório.");
     if (!this.body.neighborhood) this.errors.push("O bairro é obrigatório.");
@@ -28,16 +31,20 @@ class TitherModel {
     if (!this.body.housenumber || isNaN(this.body.housenumber)) {
       this.errors.push("O número da casa deve ser um valor numérico válido.");
     }
+    if (!this.body.phone) this.errors.push("O telefone é obrigatória.");
+    if (!this.body.category) this.errors.push("A categoria é obrigatória");
   }
 
   limpaDados() {
     this.body = {
+      code: Number(this.body.code),
       name: this.capitalizarIniciais(this.body.name.trim()),
       surname: this.capitalizarIniciais(this.body.surname.trim()),
       neighborhood: this.body.neighborhood.trim(),
       street: this.body.street.trim(),
       housenumber: Number(this.body.housenumber),
-      Telefone: this.body.Telefone ? this.body.Telefone.trim() : "",
+      phone: this.body.phone ? this.body.phone.trim() : "",
+      category: this.body.category.trim(),
     };
   }
 
@@ -49,15 +56,17 @@ class TitherModel {
       const db = await openDb();
       await db.run(
         `INSERT INTO DIZIMISTAS_TOTAIS 
-        (dizimista_nome, dizimista_sobrenome, dizimista_bairro, dizimista_rua, dizimista_numero_casa, dizimista_telefone) 
-        VALUES (?, ?, ?, ?, ?, ?)`,
+        (dizimista_id, dizimista_nome, dizimista_sobrenome, dizimista_bairro, dizimista_rua, dizimista_numero_casa, dizimista_telefone, dizimista_categoria) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
         [
+          this.body.code,
           this.body.name,
           this.body.surname,
           this.body.neighborhood,
           this.body.street,
           this.body.housenumber,
-          this.body.Telefone,
+          this.body.phone,
+          this.body.category,
         ],
       );
     } catch (e) {
@@ -111,20 +120,24 @@ class TitherModel {
       const db = await openDb();
       await db.run(
         `UPDATE DIZIMISTAS_TOTAIS SET 
+          dizimista_id = ?,
           dizimista_nome = ?,
           dizimista_sobrenome = ?,
           dizimista_bairro = ?,
           dizimista_rua = ?,
           dizimista_numero_casa = ?,
-          dizimista_telefone = ?
+          dizimista_telefone = ?,
+          dizimista_categoria = ?
         WHERE dizimista_id = ?`,
         [
+          this.body.code,
           this.body.name,
           this.body.surname,
           this.body.neighborhood,
           this.body.street,
           this.body.housenumber,
-          this.body.Telefone,
+          this.body.phone,
+          this.body.category,
           id,
         ],
       );

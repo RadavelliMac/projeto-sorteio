@@ -43,6 +43,19 @@ input::placeholder {
   padding: 5px;
 }
 
+#category {
+  display: block;
+  margin-bottom: 25px;
+  width: 250px;
+  height: 25px;
+  border-radius: 5px;
+}
+
+#category option {
+  text-align: center;
+  margin-top: 80px;
+}
+
 .submit {
   display: grid;
   place-self: center;

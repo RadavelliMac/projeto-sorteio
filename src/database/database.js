@@ -20,7 +20,8 @@ async function setupDatabase() {
         dizimista_bairro VARCHAR(100),
         dizimista_rua VARCHAR(100),
         dizimista_numero_casa INTEGER,
-        dizimista_telefone VARCHAR(100)
+        dizimista_telefone VARCHAR(100),
+        dizimista_categoria VARCHAR(100)
     );
 
     CREATE TABLE IF NOT EXISTS DIZIMISTAS_DO_MES (

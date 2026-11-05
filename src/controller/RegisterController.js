@@ -1,4 +1,4 @@
-const TitherModel = require("../model/TitherModel");
+const TitherModel = require("../model/RegisterModel");
 
 exports.Register = async (req, res) => {
   res.render("register", {
@@ -11,6 +11,14 @@ exports.Register = async (req, res) => {
 
 exports.Cadastrar = async (req, res) => {
   try {
+    const { code } = req.body;
+    const call = await this.GetId(code);
+
+    if (!call) {
+      req.flash("error", "Já existe um dizimista com esse código cadastrado");
+      return res.redirect("/cadastro-geral");
+    }
+
     const dizimista = new TitherModel(req.body);
     await dizimista.cadastrar();
 
@@ -25,6 +33,17 @@ exports.Cadastrar = async (req, res) => {
     console.error(e);
     req.flash("error", "Ocorreu um erro inesperado ao cadastrar.");
     return res.redirect("/cadastro-geral");
+  }
+};
+
+exports.GetId = async (id) => {
+  try {
+    const dizimistas = await TitherModel.getByID(id);
+    if (dizimistas.length > 0) return false;
+    return true;
+  } catch (e) {
+    console.log(e);
+    res.status(500).send("Erro ao carregar lista.");
   }
 };
 

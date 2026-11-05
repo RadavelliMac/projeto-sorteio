@@ -33,6 +33,11 @@
                 <% dizimistas.forEach(dizimista => { %>
 
                 <div class="inputs">
+                    <label for="name">Código:</label>
+                    <input type="number" name="code" placeholder="16547" value="<%= dizimista.dizimista_id %>" required>
+                </div>
+
+                <div class="inputs">
                     <label for="name">Nome:</label>
                     <input type="text" name="name" placeholder="Ex: José" value="<%= dizimista.dizimista_nome %>" required>
                 </div>
@@ -59,7 +64,16 @@
     
                 <div class="inputs">
                     <label for="number">Telefone:</label>
-                    <input type="text" name="Telefone" placeholder="4002-8922" value="<%= dizimista.dizimista_telefone %>">
+                    <input type="text" name="phone" placeholder="4002-8922" value="<%= dizimista.dizimista_telefone %>">
+                </div>
+
+                <div class="inputs">
+                    <label for="category">Categoria:</label>
+                    <select name="category" id="category" required>
+                        <option class="categoryOption" value="Masculino">Masculino</option>
+                        <option class="categoryOption" value="Feminino">Feminino</option>
+                        <option class="categoryOption" value="Infantil">Infantil</option>
+                    </select>
                 </div>
     
                 <div class="inputs">

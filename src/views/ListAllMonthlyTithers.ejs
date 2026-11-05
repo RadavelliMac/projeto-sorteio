@@ -25,13 +25,14 @@
                 <table border="1" align="center">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>Código</th>
                             <th>Nome</th>
                             <th>Sobrenome</th>
                             <th>Telefone</th>
                             <th>Bairro</th>
                             <th>Rua</th>
                             <th>Número</th>
+                            <th>Categoria</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
@@ -46,6 +47,7 @@
                                     <td> <%= dizimista.dizimista_rua %> </td>
                                     <td> <%= dizimista.dizimista_numero_casa %> </td>
                                     <td> <%= dizimista.dizimista_telefone %> </td>
+                                    <td> <%= dizimista.dizimista_categoria %> </td>
                                     <td>
                                         <a class="delete" data-id="<%= dizimista.dizimista_id %>" href="#">
                                             <img data-id="<%= dizimista.dizimista_id %>" class="image delete" src="/assets/IMAGES/delete.svg" alt="">
