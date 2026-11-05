@@ -13,4 +13,93 @@
     <a href="/sorteio-dizimista">Sorteio Dizimista</a>
     <a href="/sorteio-geral">Sorteio Geral</a>
   </div>
+
+  <div class="menu">
+
+    <div class="menuSide">
+
+        <div class="sidenav">
+
+            <a href="javascript:void(0)" class="closebutton">&times;</a>
+      
+            <div class="menuActions">
+                <a href="/">Página Inicial</a>
+                <a href="/cadastro-geral">Cadastro Geral</a>
+                <a href="/cadastro-mensal">Cadastro do Mês</a>
+                <a href="/sorteio-dizimista">Sorteio Dizimista</a>
+                <a href="/sorteio-geral">Sorteio Geral</a>
+            </div>
+
+        </div>
+        
+        <div class="menuButton">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+        
+    </div>
+
+
+
+
+  </div>
 </nav>
+
+<script>
+  function embedGlobalScope() {
+
+    function Index() {
+
+        this.start = () => {
+            this.openNavBar()
+            this.closeNavBar()
+        }
+
+        this.openNavBar = () => {
+            const getMenuSideBar = document.querySelector('.menu').addEventListener('click', (e) => {
+                const getMenu = document.querySelector('.sidenav').style.width = "250px";
+            })
+        }
+
+        this.closeNavBar = () => {
+            const closebtn = document.querySelector('.closebutton').addEventListener('click', (e) => {
+                const geMenu = document.querySelector('.sidenav').style.width = "0px";
+                
+            })
+        }
+
+        this.closeNavBarOnResize = () => {
+            const checkResizeNavbarOpen = window.addEventListener('resize', (e) => {
+                const getMenu = document.querySelector('.sidenav');
+                const getStyle = window.getComputedStyle(getMenu);
+
+                if (getStyle.width > "0") {
+                    getMenu.style.width = "0px";
+                }
+            })
+        }
+
+        this.closeNavbarOnClickOutside = () => {
+            const closeNavbarOnClick = window.addEventListener('click', (e) => {
+                if (!e.target.classList.contains("sidenav") && !e.target.classList.contains("menu")) {
+                    const getMenu = document.querySelector('.sidenav');
+                    const getStyle = window.getComputedStyle(getMenu);
+
+                    if (getStyle.width > "0") {
+                        getMenu.style.width = "0px";
+                    }
+                }
+            })
+        }
+    }
+
+    const callback = window.addEventListener('DOMContentLoaded', (e) => {
+        const renderIndex = new Index()
+        renderIndex.start()
+    })
+}
+embedGlobalScope()
+
+</script>
