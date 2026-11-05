@@ -4,8 +4,8 @@ const router = express.Router();
 const HomeController = require("./src/controller/HomeController");
 const RegisterController = require("./src/controller/RegisterController");
 const MonthlyTitherRegisterController = require("./src/controller/MonthlyTitherRegisterController");
-const PrizedrawTither = require("./src/controller/prizedrawTither");
-const PrizedrawGeneral = require("./src/controller/prizedrawGeneral");
+const PrizedrawTither = require("./src/controller/RaffleTitherRoulleteController");
+const PrizedrawGeneral = require("./src/controller/RaffleGeneralRoulleteController");
 
 router.get("/", HomeController.Home);
 
@@ -24,8 +24,8 @@ router.get(
   MonthlyTitherRegisterController.MonthlyDelete,
 );
 
-router.get("/sorteio-dizimista", PrizedrawTither.PrizedrawTither);
+router.get("/sorteio-dizimista", PrizedrawTither.RaffleTither);
 
-router.get("/sorteio-geral", PrizedrawGeneral.PrizedrawGeneral);
+router.get("/sorteio-geral", PrizedrawGeneral.RaffleGeneral);
 
 module.exports = router;

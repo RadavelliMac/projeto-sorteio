@@ -130,16 +130,16 @@ h2 {
 
 .ListTitherRequiredWarning a {
   color: white;
-  padding: 40px;
-  background-color: rgb(147, 179, 189);
+  padding: 20px;
+  background-color: rgb(138, 81, 81);
   border-radius: 20px;
-  border: 2px solid rgb(69, 113, 155);
+  border: 2px solid rgb(80, 44, 44);
   width: 40%;
   display: grid;
   place-self: center;
 }
 
 .ListTitherRequiredWarning a:hover {
-  border: 2px solid rgb(8, 38, 67);
-  background-color: rgb(73, 136, 158);
+  border: 2px solid rgb(40, 20, 20);
+  background-color: rgb(90, 44, 44);
 }
