@@ -42,7 +42,7 @@ function drawWheel(slices) {
     ctx.fill();
 
     ctx.lineWidth = 2;
-    ctx.strokeStyle = "#f80000";
+    ctx.strokeStyle = "#ffffff";
     ctx.stroke();
 
     ctx.save();

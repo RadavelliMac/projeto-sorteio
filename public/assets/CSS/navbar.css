@@ -58,13 +58,18 @@ nav .churchImage {
   font-size: 25px;
   color: rgb(255, 255, 255);
   display: block;
-  transition: 0.3s;
+  transition: 500ms;
   margin-left: 15px;
 }
 
 .closebutton {
-  transform: translateY(0px) !important;
   font-size: 45px !important;
+  width: 1%;
+  transition: 500ms;
+}
+
+.closebutton:hover {
+  color: grey;
 }
 
 .menuButton {

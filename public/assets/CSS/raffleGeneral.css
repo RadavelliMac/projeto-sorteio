@@ -15,7 +15,6 @@ body {
   background: #ffffff;
   border-radius: 16px;
   text-align: center;
-  max-width: 500px;
   width: 90%;
   margin-bottom: 40px;
 }
@@ -97,8 +96,8 @@ button:disabled {
 
 .wheel-container {
   position: relative;
-  width: 400px;
-  height: 400px;
+  width: 850px;
+  height: 850px;
   margin: 0 auto 20px auto;
 }
 
@@ -142,4 +141,14 @@ button:disabled {
   font-size: 2.2rem;
   color: #2c3e50;
   margin-top: 4px;
+}
+
+@media (max-width: 800px) {
+  .container {
+    max-width: 500px;
+  }
+  .wheel-container {
+    width: 400px;
+    height: 400px;
+  }
 }
