@@ -17,6 +17,7 @@ nav a {
 
 nav .churchImage {
   margin-left: 20px;
+  cursor: pointer;
 }
 
 .churchImage img {
