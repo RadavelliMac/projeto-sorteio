@@ -26,7 +26,6 @@ nav .churchImage {
 
 .menu {
   display: none;
-  cursor: pointer;
   transition: 0.5s;
 }
 
@@ -64,6 +63,18 @@ nav .churchImage {
 .closebutton {
   transform: translateY(0px) !important;
   font-size: 45px !important;
+}
+
+.menuButton {
+  cursor: pointer;
+}
+
+.menuActions a {
+  transition: 500ms;
+}
+
+.menuActions a:hover {
+  transform: translateX(15px) !important;
 }
 
 /* RESPONSIVIDADE */

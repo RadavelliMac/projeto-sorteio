@@ -55,17 +55,21 @@
         this.start = () => {
             this.openNavBar()
             this.closeNavBar()
+            this.closeNavBarOnResize()
+            this.closeNavbarOnClickOutside()
         }
 
         this.openNavBar = () => {
-            const getMenuSideBar = document.querySelector('.menu').addEventListener('click', (e) => {
-                const getMenu = document.querySelector('.sidenav').style.width = "250px";
+            const closeNavbarOnClick = window.addEventListener('click', (e) => {
+                if (e.target.classList.contains("menuButton") || e.target.classList.contains("line")) {
+                    const getMenu = document.querySelector('.sidenav').style.width = "250px";
+                }
             })
         }
 
         this.closeNavBar = () => {
             const closebtn = document.querySelector('.closebutton').addEventListener('click', (e) => {
-                const geMenu = document.querySelector('.sidenav').style.width = "0px";
+                const getMenu = document.querySelector('.sidenav').style.width = "0px";
                 
             })
         }
@@ -83,7 +87,7 @@
 
         this.closeNavbarOnClickOutside = () => {
             const closeNavbarOnClick = window.addEventListener('click', (e) => {
-                if (!e.target.classList.contains("sidenav") && !e.target.classList.contains("menu")) {
+                if (!e.target.classList.contains("sidenav") && !e.target.classList.contains("menuButton") && !e.target.classList.contains("line")) {
                     const getMenu = document.querySelector('.sidenav');
                     const getStyle = window.getComputedStyle(getMenu);
 
