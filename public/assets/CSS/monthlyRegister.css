@@ -74,9 +74,9 @@ input {
   border: 2px solid rgb(80, 44, 44);
   border-radius: 20px;
 
-  width: 40%;
   display: grid;
   place-self: center;
+  text-align: center !important;
   margin-top: 40px;
 }
 

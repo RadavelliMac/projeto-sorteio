@@ -5,22 +5,28 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+body {
+  display: flex;
+  align-items: center;
+}
+
 .container {
   margin-top: 40px;
   background: #ffffff;
-  padding: 30px;
   border-radius: 16px;
   text-align: center;
-  max-width: 480px;
-  width: 100%;
-  display: grid;
-  place-self: center;
+  max-width: 500px;
+  width: 90%;
   margin-bottom: 40px;
 }
 
 h2 {
   color: #2c3e50;
   margin-bottom: 8px;
+  width: 90%;
+  display: grid;
+  place-self: center;
+  margin-top: 20px;
 }
 
 .subtitle {
@@ -35,6 +41,9 @@ h2 {
   gap: 10px;
   margin-bottom: 25px;
   text-align: left;
+  width: 90%;
+  display: grid;
+  place-self: center;
 }
 
 .input-group label {
@@ -69,6 +78,7 @@ button {
   display: grid;
   place-self: center;
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 label {
@@ -107,8 +117,8 @@ button:disabled {
 }
 
 #wheelCanvas {
-  width: 100%;
-  height: 100%;
+  width: 90%;
+  height: 90%;
   border-radius: 50%;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
@@ -118,7 +128,7 @@ button:disabled {
   padding: 15px;
   background-color: #f8f9fa;
   border-radius: 8px;
-  border: 1px dashed #dcdde1;
+  border: 2px dashed black;
 }
 
 .result span {
