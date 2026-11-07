@@ -33,6 +33,10 @@ app.use(express.static(path.resolve(__dirname, "public")));
 
 app.use(routes);
 
+app.use((req, res, next) => {
+  res.render("notFound");
+});
+
 setupDatabase().then(() => {
   app.listen(PORT, () => {
     console.log(`Servidor rodando em http://localhost:${PORT}`);

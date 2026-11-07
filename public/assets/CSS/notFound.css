@@ -1,0 +1,33 @@
+.notFound {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 80px;
+  text-align: center;
+}
+
+.notFound h1 {
+  margin-bottom: 80px;
+}
+
+.notFound a {
+  color: white;
+  padding: 20px;
+  background-color: rgb(138, 81, 81);
+  border-radius: 20px;
+  border: 2px solid rgb(80, 44, 44);
+  transition: 500ms;
+  margin-top: 40px;
+  width: 250px;
+  display: grid;
+  place-self: center;
+  margin-bottom: 80px;
+}
+
+.actions a:hover {
+  border: 2px solid rgb(40, 20, 20);
+  background-color: rgb(90, 44, 44);
+}

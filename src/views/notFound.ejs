@@ -5,8 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PÁGINA INDISPONÍVEL</title>
     <link rel="icon" type="image/x-icon" href="/assets/images/imageicon.jpeg">
+    <link rel="stylesheet" href="/assets/CSS/notFound.css">
+    <link rel="stylesheet" href="/assets/CSS/base.css">
 </head>
 <body>
-    PÁGINA INDISPONIVEL
+
+    <%- include('common/navbar') %>
+
+        <div class="notFound">
+            <h1>Página Indisponível</h1>
+
+            <h1>Para voltar para a página inicial, clique no botão abaixo:</h1>
+            <a href="/">Página inicial</a>
+        </div>
+
+    <%- include('common/footer') %>
+
 </body>
 </html>
