@@ -27,6 +27,6 @@ router.get(
 router.get("/sorteio-geral", PrizedrawGeneral.RaffleGeneral);
 
 router.get("/sorteio-dizimista", PrizedrawTither.RaffleTither);
-router.post("/sorteio-dizimista/categoria", PrizedrawTither.GetTithers);
+router.post("/sorteio-dizimista", PrizedrawTither.GetTithers);
 
 module.exports = router;

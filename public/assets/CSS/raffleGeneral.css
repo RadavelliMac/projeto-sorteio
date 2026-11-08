@@ -65,9 +65,9 @@ h2 {
 
 button {
   padding: 12px;
-  background-color: lightblue;
+  background-color: rgb(138, 81, 81);
+  border: 2px solid rgb(80, 44, 44) !important;
   color: white;
-  border: none;
   border-radius: 8px;
   font-size: 1rem;
   font-weight: bold;
@@ -86,7 +86,9 @@ label {
 }
 
 button:hover:not(:disabled) {
-  background-color: aqua;
+  transform: translateY(-8px);
+  border: 2px solid rgb(40, 20, 20);
+  background-color: rgb(90, 44, 44);
 }
 
 button:disabled {
