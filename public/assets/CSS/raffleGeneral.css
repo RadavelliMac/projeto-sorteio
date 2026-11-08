@@ -13,7 +13,7 @@ body {
 .container {
   margin-top: 40px;
   background: #ffffff;
-  border-radius: 16px;
+  border-radius: 20px;
   text-align: center;
   width: 90%;
   margin-bottom: 40px;
@@ -130,6 +130,10 @@ button:disabled {
   background-color: #f8f9fa;
   border-radius: 8px;
   border: 2px dashed black;
+  width: 90%;
+  display: grid;
+  place-self: center;
+  margin-bottom: 40px;
 }
 
 .result span {

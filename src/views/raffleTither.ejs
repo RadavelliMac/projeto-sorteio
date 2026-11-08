@@ -12,166 +12,182 @@
 </head>
 <body>
 
-    <div class="PrizedrawTither">
+    <%- include('common/navbar') %>
 
-        <%- include('common/navbar') %>
+    <div class="RaffleTither">
 
-        <div class="form">
-            <form action="/sorteio-dizimista" method="post">
-                <div class="inputs">
-                    <label for="category">Categoria:</label>
-                    <select name="category" id="category" required>
-                        <option class="categoryOption" value="Masculino" <%= typeof selectedCategory !== 'undefined' && selectedCategory === 'Masculino' ? 'selected' : '' %>>Masculino</option>
-                        <option class="categoryOption" value="Feminino" <%= typeof selectedCategory !== 'undefined' && selectedCategory === 'Feminino' ? 'selected' : '' %>>Feminino</option>
-                        <option class="categoryOption" value="Infantil" <%= typeof selectedCategory !== 'undefined' && selectedCategory === 'Infantil' ? 'selected' : '' %>>Infantil</option>
-                    </select>
-
-                    <input type="submit" value="Buscar" class="submit">
-                </div>
-            </form>
-        </div>
-
-        <div class="monthlyRegister">   
-
-            <% if (typeof dizimistas !== 'undefined' && dizimistas) { %>
-            
-                <% if (dizimistas.length >= 2) { %>
-
-                    <div class="spin-action-container">
-                        <button id="btnSpin">Girar Roleta de Dizimistas!</button>
+            <div class="form">
+                <form action="/sorteio-dizimista" method="post">
+                    <div class="inputs">
+                        <label for="category">Categoria:</label>
+                        <select name="category" id="category" required>
+                            <option class="categoryOption" value="Masculino" <%= typeof selectedCategory !== 'undefined' && selectedCategory === 'Masculino' ? 'selected' : '' %>>Masculino</option>
+                            <option class="categoryOption" value="Feminino" <%= typeof selectedCategory !== 'undefined' && selectedCategory === 'Feminino' ? 'selected' : '' %>>Feminino</option>
+                            <option class="categoryOption" value="Infantil" <%= typeof selectedCategory !== 'undefined' && selectedCategory === 'Infantil' ? 'selected' : '' %>>Infantil</option>
+                        </select>
+    
+                        <input type="submit" value="Buscar" class="submit">
                     </div>
-
-                    <div class="wheel-container">
-                        <div class="pointer"></div>
-                        <canvas id="wheelCanvas" width="400" height="400"></canvas>
-                    </div>
-
-                    <div id="resultModal" class="result">
-                        <span>Dizimista Sorteado:</span>
-                        <h1 id="winnerName">-</h1>
-                    </div>
-
-                    <script>
-
-
-                        const dizimistasData = <%- JSON.stringify(dizimistas) %>;
-
-                        const canvas = document.getElementById('wheelCanvas');
-                        const ctx = canvas.getContext('2d');
-                        const btnSpin = document.getElementById('btnSpin');
-                        const winnerNameDisplay = document.getElementById('winnerName');
-
-                        const PALETTE = [
-                            '#3498db', '#e67e22', '#9b59b6', '#f1c40f',
-                            '#1abc9c', '#e74c3c', '#34495e', '#2ecc71'
-                        ];
-
-                        const slices = dizimistasData.length;
-                        let isSpinning = false;
-
-                        function drawWheel() {
-                            const width = canvas.width;
-                            const height = canvas.height;
-                            const centerX = width / 2;
-                            const centerY = height / 2;
-                            const radius = width / 2;
-                            const sliceAngle = (2 * Math.PI) / slices;
-
-                            ctx.clearRect(0, 0, width, height);
-
-                            for (let i = 0; i < slices; i++) {
-                                const startAngle = i * sliceAngle;
-                                const endAngle = startAngle + sliceAngle;
-
-                                ctx.fillStyle = PALETTE[i % PALETTE.length];
-                                
-                                ctx.beginPath();
-                                ctx.moveTo(centerX, centerY);
-                                ctx.arc(centerX, centerY, radius, startAngle, endAngle);
-                                ctx.closePath();
-                                ctx.fill();
-
-                                ctx.lineWidth = 2;
-                                ctx.strokeStyle = '#ffffff';
-                                ctx.stroke();
-
-                                ctx.save();
-                                ctx.translate(centerX, centerY);
-                                ctx.rotate(startAngle + sliceAngle / 2);
-                                ctx.textAlign = 'right';
-                                ctx.fillStyle = '#ffffff';
-                                
-                                const fontSize = slices > 20 ? 10 : (slices > 10 ? 14 : 18);
-                                ctx.font = `bold ${fontSize}px sans-serif`;
-                                
-                                const fullName = `${dizimistasData[i].dizimista_id} - ${dizimistasData[i].dizimista_nome}`;
-                                ctx.fillText(fullName.trim(), radius - 15, 6);
-                                ctx.restore();
-                            }
-                        }
-
-                        btnSpin.addEventListener('click', () => {
-                            if (isSpinning || slices < 2) return;
-
-                            isSpinning = true;
-                            btnSpin.disabled = true;
-                            winnerNameDisplay.textContent = 'Girando';
-
-                            const extraDegrees = Math.floor(Math.random() * 360);
-                            const totalRotationDegrees = 360 * 5 + extraDegrees;
-                            const duration = 4000;
-                            const startTimestamp = performance.now();
-
-                            function animateWheel(now) {
-                                const elapsed = now - startTimestamp;
-                                const progress = Math.min(elapsed / duration, 1);
-                                const easeOut = 1 - Math.pow(1 - progress, 3);
-                                const rotation = easeOut * totalRotationDegrees;
-
-                                canvas.style.transform = `rotate(${rotation}deg)`;
-
-                                if (progress < 1) {
-                                    requestAnimationFrame(animateWheel);
-                                } else {
-                                    isSpinning = false;
-                                    btnSpin.disabled = false;
+                </form>
+            </div>
+    
+            <div class="monthlyRegister">   
+    
+                <% if (typeof dizimistas !== 'undefined' && dizimistas) { %>
+                
+                    <% if (dizimistas.length >= 2) { %>
+    
+                        <div class="spin-action-container">
+                            <button id="btnSpin">Girar Roleta de Dizimistas!</button>
+                        </div>
+    
+                        <div class="wheel-container">
+                            <div class="pointer"></div>
+                            <canvas id="wheelCanvas" width="400" height="400"></canvas>
+                        </div>
+    
+                        <div id="resultModal" class="result">
+                            <span>Dizimista Sorteado:</span>
+                            <h1 id="winnerName">-</h1>
+                        </div>
+    
+                        <div class="form">
+                            <form action="" method="post">
+                                <div class="inputs">
+                                    <label for="category">Dizimista Presente?:</label>
+                                    <select name="category" id="present" required>
+                                        <option value="Sim">Sim</option>
+                                        <option value="Nao">Não</option>
+                                    </select>
+                
+                                    <input type="submit" value="Confirmar" class="submit">
+                                </div>
+                            </form>
+                        </div>
+    
+                        <script>
+    
+    
+                            const dizimistasData = <%- JSON.stringify(dizimistas) %>;
+    
+                            const canvas = document.getElementById('wheelCanvas');
+                            const ctx = canvas.getContext('2d');
+                            const btnSpin = document.getElementById('btnSpin');
+                            const winnerNameDisplay = document.getElementById('winnerName');
+    
+                            const PALETTE = [
+                                '#3498db', '#e67e22', '#9b59b6', '#f1c40f',
+                                '#1abc9c', '#e74c3c', '#34495e', '#2ecc71'
+                            ];
+    
+                            const slices = dizimistasData.length;
+                            let isSpinning = false;
+    
+                            function drawWheel() {
+                                const width = canvas.width;
+                                const height = canvas.height;
+                                const centerX = width / 2;
+                                const centerY = height / 2;
+                                const radius = width / 2;
+                                const sliceAngle = (2 * Math.PI) / slices;
+    
+                                ctx.clearRect(0, 0, width, height);
+    
+                                for (let i = 0; i < slices; i++) {
+                                    const startAngle = i * sliceAngle;
+                                    const endAngle = startAngle + sliceAngle;
+    
+                                    ctx.fillStyle = PALETTE[i % PALETTE.length];
                                     
-                                    const finalAngle = rotation % 360;
-                                    calculateWinner(finalAngle);
+                                    ctx.beginPath();
+                                    ctx.moveTo(centerX, centerY);
+                                    ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+                                    ctx.closePath();
+                                    ctx.fill();
+    
+                                    ctx.lineWidth = 2;
+                                    ctx.strokeStyle = '#ffffff';
+                                    ctx.stroke();
+    
+                                    ctx.save();
+                                    ctx.translate(centerX, centerY);
+                                    ctx.rotate(startAngle + sliceAngle / 2);
+                                    ctx.textAlign = 'right';
+                                    ctx.fillStyle = '#ffffff';
+                                    
+                                    const fontSize = slices > 20 ? 10 : (slices > 10 ? 14 : 18);
+                                    ctx.font = `bold ${fontSize}px sans-serif`;
+                                    
+                                    const fullName = `${dizimistasData[i].dizimista_id} - ${dizimistasData[i].dizimista_nome}`;
+                                    ctx.fillText(fullName.trim(), radius - 15, 6);
+                                    ctx.restore();
                                 }
                             }
-
-                            requestAnimationFrame(animateWheel);
-                        });
-
-                        async function calculateWinner(finalAngle) {
-
-                            await new Promise(resolve => setTimeout(resolve, 4000))
-
-                            const degreesPerSlice = 360 / slices;
-                            const normalizedDegree = (360 - (finalAngle % 360) + 270) % 360;
-                            const winningIndex = Math.floor(normalizedDegree / degreesPerSlice);
-                            const winner = dizimistasData[winningIndex];
-                            winnerNameDisplay.textContent = `${winner.dizimista_id} - ${winner.dizimista_nome}`;
-                        }
-
-                        drawWheel();
-                    </script>
-
-                <% } else { %>
-
-                    <div class="listAllRegisterWarning">
-                        <h1>Não há dizimistas suficientes desta categoria para realizar este sorteio</h1>
-                        <h2 class="registerNewTitherAdvice">Para cadastrar dizimistas ou participantes, selecione um dos botões abaixo:</h2>
-                        <a href="/cadastro-geral">Cadastrar Dizimistas</a>
-                        <a href="/cadastro-mensal">Cadastrar Participantes</a>
-                    </div>
-
+    
+                            btnSpin.addEventListener('click', () => {
+                                if (isSpinning || slices < 2) return;
+    
+                                isSpinning = true;
+                                btnSpin.disabled = true;
+                                winnerNameDisplay.textContent = 'Girando';
+    
+                                const extraDegrees = Math.floor(Math.random() * 360);
+                                const totalRotationDegrees = 360 * 5 + extraDegrees;
+                                const duration = 4000;
+                                const startTimestamp = performance.now();
+    
+                                function animateWheel(now) {
+                                    const elapsed = now - startTimestamp;
+                                    const progress = Math.min(elapsed / duration, 1);
+                                    const easeOut = 1 - Math.pow(1 - progress, 3);
+                                    const rotation = easeOut * totalRotationDegrees;
+    
+                                    canvas.style.transform = `rotate(${rotation}deg)`;
+    
+                                    if (progress < 1) {
+                                        requestAnimationFrame(animateWheel);
+                                    } else {
+                                        isSpinning = false;
+                                        btnSpin.disabled = false;
+                                        
+                                        const finalAngle = rotation % 360;
+                                        calculateWinner(finalAngle);
+                                    }
+                                }
+    
+                                requestAnimationFrame(animateWheel);
+                            });
+    
+                            async function calculateWinner(finalAngle) {
+    
+                                await new Promise(resolve => setTimeout(resolve, 4000))
+    
+                                const degreesPerSlice = 360 / slices;
+                                const normalizedDegree = (360 - (finalAngle % 360) + 270) % 360;
+                                const winningIndex = Math.floor(normalizedDegree / degreesPerSlice);
+                                const winner = dizimistasData[winningIndex];
+                                winnerNameDisplay.textContent = `${winner.dizimista_id} - ${winner.dizimista_nome}`;
+                            }
+    
+                            drawWheel();
+                        </script>
+    
+                    <% } else { %>
+    
+                        <div class="listAllRegisterWarning">
+                            <h1>Não há dizimistas suficientes desta categoria para realizar este sorteio</h1>
+                            <h2 class="registerNewTitherAdvice">Para cadastrar dizimistas ou participantes, selecione um dos botões abaixo:</h2>
+                            <a href="/cadastro-geral">Cadastrar Dizimistas</a>
+                            <a href="/cadastro-mensal">Cadastrar Participantes</a>
+                        </div>
+    
+                    <% } %>
+    
                 <% } %>
+    
+            </div>
 
-            <% } %>
 
-        </div>
 
     </div>
 

@@ -1,3 +1,23 @@
+body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex: 1;
+}
+
+.RaffleTither {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex: 1;
+
+  background-color: white;
+  padding: 40px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  border-radius: 20px;
+}
+
 .form {
   display: flex;
   flex-direction: column;
@@ -14,6 +34,11 @@
   height: 25px;
   border-radius: 5px;
   margin-top: 40px;
+  transition: 400ms;
+}
+
+.inputs input:hover {
+  background-color: rgb(191, 190, 190);
 }
 
 .inputs select {
@@ -30,6 +55,15 @@ select option {
 
 .listAllRegisterWarning {
   text-align: center;
+  width: 55%;
+  display: grid;
+  place-self: center;
+}
+
+.listAllRegisterWarning a:hover {
+  transform: translateY(-8px);
+  border: 2px solid rgb(40, 20, 20);
+  background-color: rgb(90, 44, 44);
 }
 
 .wheel-container {
@@ -72,6 +106,8 @@ button#btnSpin {
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 button#btnSpin:hover:not(:disabled) {
   transform: translateY(-8px);
@@ -87,9 +123,10 @@ button#btnSpin:disabled {
   padding: 15px;
   background-color: #f8f9fa;
   border-radius: 8px;
-  border: 1px dashed #dcdde1;
-  max-width: 400px;
+  border: 2px dashed black;
   text-align: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 .result span {
   font-size: 0.85rem;
