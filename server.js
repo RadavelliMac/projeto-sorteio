@@ -34,7 +34,7 @@ app.use(express.static(path.resolve(__dirname, "public")));
 app.use(routes);
 
 app.use((req, res, next) => {
-  res.render("notFound");
+  res.redirect("/pagina-indisponivel");
 });
 
 setupDatabase().then(() => {
