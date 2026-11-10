@@ -41,6 +41,38 @@ class TranscriptModel {
       return [];
     }
   }
+
+  static async Edit(ID) {
+    try {
+      const db = await openDb();
+      return await db.all(
+        `
+          SELECT * FROM DIZIMISTAS_SORTEADOS DS INNER JOIN DIZIMISTAS_TOTAIS DT ON
+          DT.dizimista_id = DS.dizimista_sorteado WHERE DS.dizimista_sorteado_id = ?
+        `,
+        [ID],
+      );
+    } catch (e) {
+      console.error(e);
+      return [];
+    }
+  }
+
+  async Update() {
+    try {
+      const db = await openDb();
+      return await db.all(
+        `
+          UPDATE DIZIMISTAS_SORTEADOS SET dizimista_presente = ?
+          WHERE dizimista_sorteado_id = ?
+        `,
+        [this.body.titherPresent, this.body.dizimistaID],
+      );
+    } catch (e) {
+      console.error(e);
+      return [];
+    }
+  }
 }
 
 module.exports = TranscriptModel;

@@ -6,7 +6,7 @@
     <link rel="icon" type="image/x-icon" href="/assets/images/imageicon.jpeg">
     <link rel="stylesheet" href="/assets/CSS/visualizer.css">
     <link rel="stylesheet" href="/assets/CSS/base.css" />
-    <title>VISUALIZAR DIZIMISTAS</title>
+    <title>VISUALIZAR HISTÓRICO DE DIZIMISTAS SORTEADOS</title>
 </head>
 <body>
     
@@ -53,7 +53,7 @@
                                     <td> <%= dizimista.dizimista_presente %> </td>
                                     <td> <%= dizimista.dizimista_data %> </td>
                                     <td>
-                                        <a href="/cadastro-geral/editar/<%= dizimista.dizimista_id %>">
+                                        <a href="/dizimista-sorteado/editar/<%= dizimista.dizimista_sorteado_id %>">
                                             <img class="image" src="/assets/IMAGES/edit.svg" alt="">
                                         </a>
                                     </td>
@@ -81,8 +81,6 @@
     </div>
     
         <%- include('common/footer') %>
-
-    <script src="/assets/JS/confirmExclusionGeneralTither.js"></script>
 
 </body>
 </html>

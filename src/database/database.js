@@ -31,6 +31,7 @@ async function setupDatabase() {
     );
 
     CREATE TABLE IF NOT EXISTS DIZIMISTAS_SORTEADOS (
+      dizimista_sorteado_id INTEGER PRIMARY KEY AUTOINCREMENT,
       dizimista_sorteado INTEGER,
       dizimista_data DATETIME,
       dizimista_presente VARCHAR(100),

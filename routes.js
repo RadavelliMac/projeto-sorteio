@@ -35,5 +35,7 @@ router.get("/pagina-indisponivel", NotFound.NotFound);
 
 router.get("/dizimistas-sorteados/", TranscriptController.Transcript);
 router.post("/dizimistas-sorteados/", TranscriptController.Register);
+router.get("/dizimista-sorteado/editar/:id", TranscriptController.Edit);
+router.post("/dizimista-sorteado/editar/:id", TranscriptController.Update);
 
 module.exports = router;

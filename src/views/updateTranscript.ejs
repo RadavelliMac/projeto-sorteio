@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/CSS/base.css" />
+    <link rel="stylesheet" href="/assets/CSS/updateTranscript.css">
+    <link rel="icon" type="image/x-icon" href="/assets/images/imageicon.jpeg">
+    <title>ATUALIZAR HISTÓRICO DE DIZIMISTAS SORTEADOS</title>
+</head>
+<body>
+
+    <%- include('common/navbar') %>
+
+    
+    <div class="updateTither">
+
+        <div class="updateInfos">
+            <h1>Área para atualizar informações de dizimistas sorteados</h1>
+
+        </div>
+
+        <div class="form">
+            
+            <% if (dizimistas.length > 0) { %>
+
+            <form action="" method="post">
+
+                <% dizimistas.forEach(dizimista => { %>
+
+                <div class="showInfos">
+                    <h2>ID: <span><%= dizimista.dizimista_id %></span></h2>
+                    <h2>Nome: <span><%= dizimista.dizimista_nome %></span></h2>
+                    <h2>Sobrenome: <span><%= dizimista.dizimista_sobrenome %></span></h2>
+                    <h2>Telefone: <span><%= dizimista.dizimista_telefone %></span></h2>
+                    <h2>Bairro: <span><%= dizimista.dizimista_bairro %></span></h2>
+                    <h2>Rua: <span><%= dizimista.dizimista_rua %></span></h2>
+                    <h2>Número: <span><%= dizimista.dizimista_numero_casa %></span></h2>
+                    <h2>Categoria: <span><%= dizimista.dizimista_categoria %></span></h2>
+                    <h2>Data: <span><%= dizimista.dizimista_data %></span></h2>
+                </div>
+                
+                <div class="inputs">
+                    <label for="titherPresent">Dizimista Presente?:</label>
+                    <select name="titherPresent" id="present" required>
+                        <option value="Sim" <%= dizimista.dizimista_presente === 'Sim' ? 'selected' : '' %>>Sim</option>
+                        <option value="Nao" <%= dizimista.dizimista_presente === 'Nao' ? 'selected' : '' %>>Não</option>
+                    </select>
+                </div>
+
+                <div class="inputs">
+                    <input type="number" name="dizimistaID" value="<%= dizimista.dizimista_sorteado_id %>" id="invisible">
+                </div>
+    
+                <div class="inputs">
+                    <input type="submit" value="Cadastrar" class="submit">
+                </div>
+
+
+                <% if (dizimistas.length > 1) { %>
+                    <div class="separator"></div>
+                <% } else { %>
+                <% } %>
+
+                <% }) %>
+
+
+
+                
+            </form>
+
+                <% } else { %>
+
+                    <div class="ListTitherRequiredWarning">
+                        <h1>Nenhum dizimista informado</h1>
+
+                        <h2 class="registerNewTitherAdvice">
+                            Nenhum dizimista foi encontrado. 
+                            Verifique o ID correto ou clique no botão abaixo para cadastrar um dizimista:
+                        </h2>
+                        <a href="/cadastro-geral">Cadastrar Dizimistas</a>
+                    </div>
+
+                <% } %>
+
+        </div>
+
+    </div>
+
+        <%- include('common/footer') %>
+
+</body>
+</html>
