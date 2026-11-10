@@ -56,13 +56,15 @@
                         </div>
     
                         <div class="form">
-                            <form action="" method="post">
+                            <form action="/dizimistas-sorteados/" method="post">
                                 <div class="inputs">
-                                    <label for="category">Dizimista Presente?:</label>
-                                    <select name="category" id="present" required>
+                                    <label for="titherPresent">Dizimista Presente?:</label>
+                                    <select name="titherPresent" id="present" required>
                                         <option value="Sim">Sim</option>
                                         <option value="Nao">Não</option>
                                     </select>
+
+                                    <input type="number" value="" name="id" id="invisible">
                 
                                     <input type="submit" value="Confirmar" class="submit" id="confirmSubmit" disabled>
                                 </div>

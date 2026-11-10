@@ -24,11 +24,19 @@ async function setupDatabase() {
         dizimista_categoria VARCHAR(100)
     );
 
-    CREATE TABLE IF NOT EXISTS DIZIMISTAS_DO_MES (
+    CREATE TABLE IF NOT EXISTS DIZIMISTAS_MENSAIS (
         dizimista_do_mes_id INTEGER,
         FOREIGN KEY (dizimista_do_mes_id)
             REFERENCES DIZIMISTAS_TOTAIS(dizimista_id)
-    )
+    );
+
+    CREATE TABLE IF NOT EXISTS DIZIMISTAS_SORTEADOS (
+      dizimista_sorteado INTEGER,
+      dizimista_data DATETIME,
+      dizimista_presente VARCHAR(100),
+      FOREIGN KEY (dizimista_sorteado)
+            REFERENCES DIZIMISTAS_TOTAIS(dizimista_id)
+    );
 
   `);
 

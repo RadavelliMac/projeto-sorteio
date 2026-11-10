@@ -43,6 +43,10 @@ body {
   margin-top: 20px;
 }
 
+#invisible {
+  display: none;
+}
+
 .inputs input:hover {
   background-color: rgb(191, 190, 190);
 }

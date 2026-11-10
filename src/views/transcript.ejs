@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/assets/images/imageicon.jpeg">
+    <link rel="stylesheet" href="/assets/CSS/visualizer.css">
+    <link rel="stylesheet" href="/assets/CSS/base.css" />
+    <title>VISUALIZAR DIZIMISTAS</title>
+</head>
+<body>
+    
+    <div class="visualizer">
+
+        <%- include('common/navbar') %>
+
+        <div class="visualizerArea">
+
+                <div class="visualizerInfos">
+                    <h2>Área para visualizar o histórico de dizimistas sorteados</h2>
+                </div>
+
+                <% if (dizimistas.length > 0) { %>
+
+                <table border="1" align="center">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nome</th>
+                            <th>Sobrenome</th>
+                            <th>Telefone</th>
+                            <th>Bairro</th>
+                            <th>Rua</th>
+                            <th>Número</th>
+                            <th>Categoria</th>
+                            <th>Compareceu?</th>
+                            <th>Data</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                            <% dizimistas.forEach(dizimista => { %>
+                                <tr>
+                                    <td> <%= dizimista.dizimista_id %> </td>
+                                    <td> <%= dizimista.dizimista_nome %> </td>
+                                    <td> <%= dizimista.dizimista_sobrenome %> </td>
+                                    <td> <%= dizimista.dizimista_telefone %> </td>
+                                    <td> <%= dizimista.dizimista_bairro %> </td>
+                                    <td> <%= dizimista.dizimista_rua %> </td>
+                                    <td> <%= dizimista.dizimista_numero_casa %> </td>
+                                    <td> <%= dizimista.dizimista_categoria %> </td>
+                                    <td> <%= dizimista.dizimista_presente %> </td>
+                                    <td> <%= dizimista.dizimista_data %> </td>
+                                    <td>
+                                        <a href="/cadastro-geral/editar/<%= dizimista.dizimista_id %>">
+                                            <img class="image" src="/assets/IMAGES/edit.svg" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                            
+                        </tbody>
+                    </table>
+
+
+                    <% } else { %>
+
+                        <div class="listAllRegisterWarning">
+                            <h1>Nenhum dizimista sorteado até o momento</h1>
+    
+                            <h2 class="registerNewTitherAdvice">Para sortear dizimistas, clique no botão abaixo:</h2>
+                            <a href="/sorteio-dizimista">Sortear Dizimistas</a>
+                        </div>
+
+                    <% } %>
+
+
+        </div>
+
+    </div>
+    
+        <%- include('common/footer') %>
+
+    <script src="/assets/JS/confirmExclusionGeneralTither.js"></script>
+
+</body>
+</html>

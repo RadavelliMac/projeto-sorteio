@@ -23,7 +23,7 @@ class MonthlyTither {
     try {
       const db = await openDb();
       return await db.all(
-        "SELECT * FROM DIZIMISTAS_DO_MES WHERE dizimista_do_mes_id = ?",
+        "SELECT * FROM DIZIMISTAS_MENSAIS WHERE dizimista_do_mes_id = ?",
         [id],
       );
     } catch (e) {
@@ -36,7 +36,7 @@ class MonthlyTither {
     try {
       const db = await openDb();
       return await db.run(
-        "INSERT INTO DIZIMISTAS_DO_MES (dizimista_do_mes_id) VALUES (?)",
+        "INSERT INTO DIZIMISTAS_MENSAIS (dizimista_do_mes_id) VALUES (?)",
         [id],
       );
     } catch (e) {
@@ -50,7 +50,7 @@ class MonthlyTither {
       const db = await openDb();
       return await db.all(
         `
-          SELECT * FROM DIZIMISTAS_DO_MES DM INNER JOIN DIZIMISTAS_TOTAIS DT 
+          SELECT * FROM DIZIMISTAS_MENSAIS DM INNER JOIN DIZIMISTAS_TOTAIS DT 
           ON DM.dizimista_do_mes_id = dizimista_id ORDER BY dizimista_id DESC
         `,
       );
@@ -65,7 +65,7 @@ class MonthlyTither {
       const db = await openDb();
       await db.run(
         `
-          DELETE FROM DIZIMISTAS_DO_MES WHERE dizimista_do_mes_id = ?
+          DELETE FROM DIZIMISTAS_MENSAIS WHERE dizimista_do_mes_id = ?
         `,
         [id],
       );

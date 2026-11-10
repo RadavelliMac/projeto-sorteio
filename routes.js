@@ -6,6 +6,7 @@ const RegisterController = require("./src/controller/RegisterController");
 const MonthlyTitherRegisterController = require("./src/controller/MonthlyTitherRegisterController");
 const PrizedrawGeneral = require("./src/controller/RaffleGeneralRoulleteController");
 const PrizedrawTither = require("./src/controller/RaffleTitherRoulleteController");
+const TranscriptController = require("./src/controller/TranscriptController");
 const NotFound = require("./src/controller/404NotFoundController");
 
 router.get("/", HomeController.Home);
@@ -31,5 +32,8 @@ router.get("/sorteio-dizimista", PrizedrawTither.RaffleTither);
 router.post("/sorteio-dizimista", PrizedrawTither.GetTithers);
 
 router.get("/pagina-indisponivel", NotFound.NotFound);
+
+router.get("/dizimistas-sorteados/", TranscriptController.Transcript);
+router.post("/dizimistas-sorteados/", TranscriptController.Register);
 
 module.exports = router;

@@ -11,9 +11,9 @@ class RaffleModel {
       const db = await openDb();
       return await db.all(
         `
-          SELECT * FROM DIZIMISTAS_DO_MES 
+          SELECT * FROM DIZIMISTAS_MENSAIS 
           INNER JOIN DIZIMISTAS_TOTAIS ON
-          DIZIMISTAS_TOTAIS.dizimista_id = DIZIMISTAS_DO_MES.dizimista_do_mes_id
+          DIZIMISTAS_TOTAIS.dizimista_id = DIZIMISTAS_MENSAIS.dizimista_do_mes_id
           WHERE DIZIMISTAS_TOTAIS.dizimista_categoria = ?
         `,
         [category],
