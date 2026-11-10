@@ -70,3 +70,33 @@ label {
 #invisible {
   display: none;
 }
+
+.ListTitherRequiredWarning {
+  margin-bottom: 20px;
+  margin-top: 120px;
+  text-align: center;
+  width: 50%;
+  display: grid;
+  place-self: center;
+}
+
+.ListTitherRequiredWarning h1,
+h2 {
+  margin-bottom: 40px;
+}
+
+.ListTitherRequiredWarning a {
+  color: white;
+  padding: 20px;
+  background-color: rgb(138, 81, 81);
+  border-radius: 20px;
+  border: 2px solid rgb(80, 44, 44);
+  width: 40%;
+  display: grid;
+  place-self: center;
+}
+
+.ListTitherRequiredWarning a:hover {
+  border: 2px solid rgb(40, 20, 20);
+  background-color: rgb(90, 44, 44);
+}
