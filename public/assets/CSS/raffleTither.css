@@ -37,6 +37,12 @@ body {
   transition: 400ms;
 }
 
+.category {
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
 .inputs input:hover {
   background-color: rgb(191, 190, 190);
 }
@@ -47,6 +53,19 @@ body {
   height: 25px;
   border-radius: 5px;
   margin-top: 40px;
+  cursor: pointer;
+}
+
+.submit {
+  cursor: pointer;
+}
+
+#confirmSubmit:disabled {
+  cursor: not-allowed;
+}
+
+#confirmSubmit:disabled:hover {
+  background-color: white;
 }
 
 select option {
@@ -96,7 +115,7 @@ select option {
   text-align: center;
   margin-bottom: 20px;
 }
-button#btnSpin {
+button#buttonSpin {
   padding: 12px 24px;
   background-color: rgb(138, 81, 81);
   border: 2px solid rgb(80, 44, 44) !important;
@@ -109,12 +128,12 @@ button#btnSpin {
   margin-top: 20px;
   margin-bottom: 20px;
 }
-button#btnSpin:hover:not(:disabled) {
+button#buttonSpin:hover:not(:disabled) {
   transform: translateY(-8px);
   border: 2px solid rgb(40, 20, 20);
   background-color: rgb(90, 44, 44);
 }
-button#btnSpin:disabled {
+button#buttonSpin:disabled {
   background-color: #bdc3c7;
   cursor: not-allowed;
 }

@@ -80,7 +80,7 @@ btnSpin.addEventListener("click", () => {
   isSpinning = true;
   btnSpin.disabled = true;
   inputMaxNumber.disabled = true;
-  winnerNumberDisplay.textContent = "...";
+  winnerNumberDisplay.textContent = "Girando";
 
   const extraDegrees = Math.floor(Math.random() * 360);
   const totalRotationDegrees = 360 * 5 + extraDegrees;
