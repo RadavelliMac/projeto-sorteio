@@ -87,6 +87,20 @@
     
             </div>
 
+                <% if (messages.success && messages.success.length > 0) { %>
+                    <div class="successMessage">
+                        <%= messages.success %>
+                    </div>
+                <% } %>
+
+                <% if (messages.error && messages.error.length > 0) { %>
+                    <div class="errorMessage">
+                        <% messages.error.forEach(err => { %>
+                            <p style="margin: 0;"><%= err %></p>
+                        <% }) %>
+                    </div>
+                <% } %>
+
     </div>
 
     <%- include('common/footer') %>

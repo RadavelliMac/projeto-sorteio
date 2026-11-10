@@ -15,7 +15,13 @@ exports.GetTithers = async (req, res) => {
   try {
     const { category } = req.body;
     const dizimistas = await RaffleModel.GetTithers(category);
-    return res.render("raffleTither", { dizimistas });
+    return res.render("raffleTither", {
+      dizimistas,
+      messages: {
+        success: req.flash("success"),
+        error: req.flash("error"),
+      },
+    });
   } catch (e) {
     console.log(e);
     res.redirect("/sorteio-dizimista");
