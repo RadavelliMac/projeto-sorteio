@@ -11,6 +11,7 @@ class TranscriptModel {
 
   async Cadastrar() {
     const date = new Date().toLocaleDateString("pt-BR");
+    console.log(this.body.id);
     try {
       this.FormataDados();
       const db = await openDb();
@@ -21,9 +22,10 @@ class TranscriptModel {
         `,
         [this.body.id, date, this.body.titherPresent],
       );
+      return true;
     } catch (e) {
       console.error(e);
-      return [];
+      return false;
     }
   }
 

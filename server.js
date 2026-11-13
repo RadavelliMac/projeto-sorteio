@@ -9,7 +9,7 @@ const dotenv = require("dotenv").config({
 
 const { setupDatabase } = require("./src/database/database");
 
-const PORT = process.env.PORT;
+const PORT = 4444;
 const SECRET_KEY = process.env.SECRET_KEY;
 
 const app = express();
