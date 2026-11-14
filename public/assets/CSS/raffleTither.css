@@ -81,6 +81,7 @@ select option {
   width: 55%;
   display: grid;
   place-self: center;
+  margin-bottom: 20px;
 }
 
 .listAllRegisterWarning a:hover {

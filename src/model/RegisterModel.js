@@ -20,11 +20,12 @@ class TitherModel {
 
   valida() {
     const categories = ["Masculino", "Feminino", "Infantil"];
+    const regex = /^\d+$/;
 
     if (!this.body.code || isNaN(this.body.code)) {
       this.errors.push("O código deve ser um valor numérico válido.");
     }
-    if (this.body.code.includes("e") || this.body.code < 1) {
+    if (!String(string).match(regex) || this.body.code < 1) {
       this.errors.push("Esse formato de número de código é inválido");
     }
 
@@ -36,7 +37,10 @@ class TitherModel {
     if (!this.body.housenumber || isNaN(this.body.housenumber)) {
       this.errors.push("O número da casa deve ser um valor numérico válido.");
     }
-    if (this.body.housenumber.includes("e") || this.body.housenumber < 1) {
+    if (
+      !String(this.body.housenumber).match(regex) ||
+      this.body.housenumber < 1
+    ) {
       this.errors.push("Esse formato de número de casa é inválido");
     }
 

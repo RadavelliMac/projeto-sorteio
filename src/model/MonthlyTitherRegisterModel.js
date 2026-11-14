@@ -7,10 +7,12 @@ class MonthlyTither {
   }
 
   valida() {
+    const regex = /^\d+$/;
+
     if (!this.body.titherId || isNaN(this.body.titherId)) {
       this.errors.push("O código deve ser um valor numérico válido.");
     }
-    if (this.body.titherId.includes("e") || this.body.titherId < 1) {
+    if (!String(this.body.titherId).match(regex) || this.body.titherId < 1) {
       this.errors.push("Esse formato de número de código é inválido");
     }
   }
