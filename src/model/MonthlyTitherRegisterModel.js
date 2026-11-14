@@ -48,7 +48,7 @@ class MonthlyTither {
       const db = await openDb();
       return await db.run(
         "INSERT INTO DIZIMISTAS_MENSAIS (dizimista_do_mes_id) VALUES (?)",
-        [id],
+        [this.body.titherId],
       );
     } catch (e) {
       console.error(e);

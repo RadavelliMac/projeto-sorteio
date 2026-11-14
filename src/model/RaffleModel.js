@@ -6,7 +6,15 @@ class RaffleModel {
     this.errors = [];
   }
 
-  static async GetTithers(category) {
+  valida() {
+    const categories = ["Masculino", "Feminino", "Infantil"];
+    if (!categories.includes(this.body.category)) {
+      this.errors.push("Categoria Inválida");
+    }
+  }
+
+  async GetTithers() {
+    this.valida();
     try {
       const db = await openDb();
       return await db.all(
@@ -16,7 +24,7 @@ class RaffleModel {
           DIZIMISTAS_TOTAIS.dizimista_id = DIZIMISTAS_MENSAIS.dizimista_do_mes_id
           WHERE DIZIMISTAS_TOTAIS.dizimista_categoria = ?
         `,
-        [category],
+        [this.body.category],
       );
     } catch (e) {
       console.error(e);
