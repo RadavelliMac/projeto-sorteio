@@ -6,16 +6,16 @@ class TranscriptModel {
     this.errors = [];
   }
 
-  valida(isUpdate) {
+  valida(isRegister) {
     const present = ["Sim", "Nao"];
 
-    if (!isUpdate) if (!this.body.id) this.errors.push("Código inválido");
+    if (isRegister) if (!this.body.id) this.errors.push("Código inválido");
     if (!present.includes(this.body.titherPresent))
       this.errors.push("Resposta inválida");
   }
 
   async Cadastrar() {
-    this.valida(false);
+    this.valida(true);
     if (this.errors.length > 0) return;
     const date = new Date().toLocaleDateString("pt-BR");
     try {
@@ -65,8 +65,8 @@ class TranscriptModel {
     }
   }
 
-  async Update() {
-    this.valida(true);
+  async Update(id) {
+    this.valida(false);
     if (this.errors.length > 0) return;
     try {
       const db = await openDb();
@@ -75,7 +75,7 @@ class TranscriptModel {
           UPDATE DIZIMISTAS_SORTEADOS SET dizimista_presente = ?
           WHERE dizimista_sorteado_id = ?
         `,
-        [this.body.titherPresent, this.body.dizimistaID],
+        [this.body.titherPresent, id],
       );
     } catch (e) {
       console.error(e);

@@ -44,8 +44,9 @@ exports.Edit = async (req, res) => {
 
 exports.Update = async (req, res) => {
   try {
+    const { id } = req.params;
     const Transcript = new TranscriptModel(req.body);
-    const dizimistas = await Transcript.Update();
+    const dizimistas = await Transcript.Update(id);
 
     if (Transcript.errors.length > 0) {
       req.flash("error", Transcript.errors);

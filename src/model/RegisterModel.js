@@ -25,7 +25,7 @@ class TitherModel {
     if (!this.body.code || isNaN(this.body.code)) {
       this.errors.push("O código deve ser um valor numérico válido.");
     }
-    if (!String(string).match(regex) || this.body.code < 1) {
+    if (!String(this.body.code).match(regex) || this.body.code < 1) {
       this.errors.push("Esse formato de número de código é inválido");
     }
 
