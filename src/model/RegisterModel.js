@@ -19,20 +19,36 @@ class TitherModel {
   }
 
   valida() {
-    this.limpaDados();
+    const categories = ["Masculino", "Feminino", "Infantil"];
 
     if (!this.body.code || isNaN(this.body.code)) {
       this.errors.push("O código deve ser um valor numérico válido.");
     }
+    if (this.body.code.includes("e") || this.body.code < 1) {
+      this.errors.push("Esse formato de número de código é inválido");
+    }
+
     if (!this.body.name) this.errors.push("O nome é obrigatório.");
     if (!this.body.surname) this.errors.push("O sobrenome é obrigatório.");
     if (!this.body.neighborhood) this.errors.push("O bairro é obrigatório.");
     if (!this.body.street) this.errors.push("A rua é obrigatória.");
+
     if (!this.body.housenumber || isNaN(this.body.housenumber)) {
       this.errors.push("O número da casa deve ser um valor numérico válido.");
     }
+    if (this.body.housenumber.includes("e") || this.body.housenumber < 1) {
+      this.errors.push("Esse formato de número de casa é inválido");
+    }
+
     if (!this.body.phone) this.errors.push("O telefone é obrigatória.");
+    if (!this.body.phone.match(/^\(\d{2}\)\s\d{4,5}-\d{4}$/))
+      this.errors.push("Telefone inválido");
+
     if (!this.body.category) this.errors.push("A categoria é obrigatória");
+    if (!categories.includes(this.body.category))
+      this.errors.push("A categoria informada não é aceita");
+
+    this.limpaDados();
   }
 
   limpaDados() {
@@ -43,7 +59,7 @@ class TitherModel {
       neighborhood: this.body.neighborhood.trim(),
       street: this.body.street.trim(),
       housenumber: Number(this.body.housenumber),
-      phone: this.body.phone ? this.body.phone.trim() : "",
+      phone: this.body.phone.trim(),
       category: this.body.category.trim(),
     };
   }

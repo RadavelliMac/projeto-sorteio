@@ -23,7 +23,7 @@
             <form action="/cadastro-mensal" method="post"> 
                 <div class="inputs">
                     <label for="tither">Código do dizimista (ID único): </label>
-                    <input type="number" name="titherId" id="titherNumber" required>
+                    <input type="number" min="0" value="" name="titherId" id="titherNumber" class="numberForbidden" required>
                 </div>
                 <div class="inputs">
                     <input class="submit" type="submit" value="Cadastrar">
@@ -54,6 +54,8 @@
     </div>
 
         <%- include('common/footer') %>
+
+<script src="/assets/JS/regex.js"></script>
 
 </body>
 </html>
