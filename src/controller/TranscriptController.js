@@ -20,6 +20,11 @@ exports.Register = async (req, res) => {
     const Transcript = new TranscriptModel(req.body);
     const dizimistas = await Transcript.Cadastrar();
 
+    if (Transcript.errors.length > 0) {
+      req.flash("error", Transcript.errors);
+      return res.redirect("/sorteio-dizimista");
+    }
+
     req.flash("success", "Dizimista salvo no historico!");
     return res.redirect("/sorteio-dizimista");
   } catch (e) {
@@ -42,8 +47,13 @@ exports.Update = async (req, res) => {
     const Transcript = new TranscriptModel(req.body);
     const dizimistas = await Transcript.Update();
 
+    if (Transcript.errors.length > 0) {
+      req.flash("error", Transcript.errors);
+      return res.redirect("/dizimistas-sorteados");
+    }
+
     req.flash("success", "Dizimista atualizado com sucesso!");
-    res.redirect("/dizimistas-sorteados/");
+    res.redirect("/dizimistas-sorteados");
   } catch (e) {
     console.log(e);
   }

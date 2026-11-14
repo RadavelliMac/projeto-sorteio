@@ -3,17 +3,22 @@ const { openDb } = require("../database/database");
 class TranscriptModel {
   constructor(body) {
     this.body = body;
+    this.errors = [];
   }
 
-  FormataDados() {
-    this.body.id = Number(this.body.id);
+  valida(isUpdate) {
+    const present = ["Sim", "Nao"];
+
+    if (!isUpdate) if (!this.body.id) this.errors.push("Código inválido");
+    if (!present.includes(this.body.titherPresent))
+      this.errors.push("Resposta inválida");
   }
 
   async Cadastrar() {
+    this.valida(false);
+    if (this.errors.length > 0) return;
     const date = new Date().toLocaleDateString("pt-BR");
-    console.log(this.body.id);
     try {
-      this.FormataDados();
       const db = await openDb();
       await db.run(
         `
@@ -61,6 +66,8 @@ class TranscriptModel {
   }
 
   async Update() {
+    this.valida(true);
+    if (this.errors.length > 0) return;
     try {
       const db = await openDb();
       return await db.all(

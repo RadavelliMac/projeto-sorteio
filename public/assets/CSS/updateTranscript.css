@@ -94,6 +94,7 @@ h2 {
   width: 40%;
   display: grid;
   place-self: center;
+  margin-bottom: 20px;
 }
 
 .ListTitherRequiredWarning a:hover {
