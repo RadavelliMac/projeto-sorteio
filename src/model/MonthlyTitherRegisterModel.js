@@ -6,6 +6,15 @@ class MonthlyTither {
     this.errors = [];
   }
 
+  valida() {
+    if (!this.body.titherId || isNaN(this.body.titherId)) {
+      this.errors.push("O código deve ser um valor numérico válido.");
+    }
+    if (this.body.titherId.includes("e") || this.body.titherId < 1) {
+      this.errors.push("Esse formato de número de código é inválido");
+    }
+  }
+
   static async Consultar(id) {
     try {
       const db = await openDb();
@@ -32,7 +41,9 @@ class MonthlyTither {
     }
   }
 
-  static async Cadastrar(id) {
+  async Cadastrar() {
+    this.valida();
+    if (this.errors.length > 0) return;
     try {
       const db = await openDb();
       return await db.run(

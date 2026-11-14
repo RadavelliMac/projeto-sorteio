@@ -29,7 +29,14 @@ exports.Cadastrar = async (req, res) => {
       return res.redirect("/cadastro-mensal");
     }
 
-    await MonthlyTitherRegisterModel.Cadastrar(id);
+    const Register = new MonthlyTitherRegisterModel(req.body);
+    await Register.Cadastrar();
+
+    if (Register.errors.length > 0) {
+      req.flash("error", Register.errors);
+      return res.redirect("/cadastro-mensal");
+    }
+
     req.flash("success", "Dizimista cadastrado com sucesso!");
     return res.redirect("/cadastro-mensal");
   } catch (e) {
