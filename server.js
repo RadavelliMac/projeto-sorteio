@@ -8,6 +8,7 @@ const dotenv = require("dotenv").config({
 });
 
 const { setupDatabase } = require("./src/database/database");
+const routes = require("./routes");
 
 const PORT = 4444;
 const SECRET_KEY = process.env.SECRET_KEY;
@@ -23,15 +24,12 @@ app.use(
 );
 app.use(flash());
 
-const routes = require("./routes");
-
 app.set("views", path.resolve(__dirname, "src", "views"));
 app.set("view engine", "ejs");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.resolve(__dirname, "public")));
-
 app.use(routes);
 
 app.use((req, res, next) => {
