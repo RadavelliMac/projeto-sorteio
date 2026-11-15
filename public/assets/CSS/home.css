@@ -30,6 +30,8 @@
   background-color: rgb(90, 44, 44);
 }
 
+/* RESPONSIVIDADE */
+
 @media (max-width: 800px) {
   .actions {
     display: grid;
