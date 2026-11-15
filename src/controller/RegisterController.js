@@ -83,6 +83,13 @@ exports.Edit = async (req, res) => {
 exports.Update = async (req, res) => {
   try {
     const { id } = req.params;
+    const call = await this.GetId(id);
+
+    if (call) {
+      req.flash("error", "Nenhum dizimista com este id foi encontrado");
+      return res.redirect("/cadastro-geral/editar/");
+    }
+
     const dizimista = new TitherModel(req.body);
     await dizimista.Update(id);
     if (dizimista.errors.length > 0) {
@@ -101,6 +108,13 @@ exports.Update = async (req, res) => {
 exports.Delete = async (req, res) => {
   try {
     const { id } = req.params;
+    const call = await this.GetId(id);
+
+    if (call) {
+      req.flash("error", "Nenhum dizimista com este id foi encontrado");
+      return res.redirect("/cadastro-geral/editar/");
+    }
+
     const sucesso = await TitherModel.deletar(id);
     if (!sucesso) {
       req.flash("error", "Não foi possível excluir o registro.");

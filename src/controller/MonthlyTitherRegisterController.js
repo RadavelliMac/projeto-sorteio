@@ -63,7 +63,7 @@ exports.MonthlyDelete = async (req, res) => {
   try {
     const { id } = req.params;
     const newId = Number(id);
-    const dizimista = await MonthlyTitherRegisterModel.Delete(id);
+    const dizimista = await MonthlyTitherRegisterModel.Delete(newId);
     if (dizimista) {
       req.flash("success", "Dizimista excluído com sucesso!");
       return res.redirect("/cadastro-mensal/editar");
