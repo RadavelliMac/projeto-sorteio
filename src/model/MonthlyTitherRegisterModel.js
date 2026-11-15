@@ -73,6 +73,21 @@ class MonthlyTither {
     }
   }
 
+  static async GetId(id) {
+    try {
+      const db = await openDb();
+      return await db.all(
+        `
+          SELECT * FROM DIZIMISTAS_MENSAIS WHERE dizimista_do_mes_id = ?
+        `,
+        [id],
+      );
+    } catch (e) {
+      console.error(e);
+      return false;
+    }
+  }
+
   static async Delete(id) {
     try {
       const db = await openDb();

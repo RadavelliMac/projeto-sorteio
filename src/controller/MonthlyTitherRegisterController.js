@@ -59,11 +59,27 @@ exports.GetAll = async (req, res) => {
   }
 };
 
+exports.MonthlyGetById = async (id) => {
+  try {
+    const dizimistas = await MonthlyTitherRegisterModel.GetId(id);
+    if (dizimistas.length > 0) return false;
+    return true;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 exports.MonthlyDelete = async (req, res) => {
   try {
     const { id } = req.params;
-    const newId = Number(id);
-    const dizimista = await MonthlyTitherRegisterModel.Delete(newId);
+    const call = await this.MonthlyGetById(id);
+
+    if (call) {
+      req.flash("error", "Nenhum dizimista com este código foi encontrado");
+      return res.redirect("/cadastro-mensal/editar/");
+    }
+
+    const dizimista = await MonthlyTitherRegisterModel.Delete(id);
     if (dizimista) {
       req.flash("success", "Dizimista excluído com sucesso!");
       return res.redirect("/cadastro-mensal/editar");
