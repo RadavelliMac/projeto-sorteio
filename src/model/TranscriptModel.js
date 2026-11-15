@@ -64,7 +64,22 @@ class TranscriptModel {
     }
   }
 
-  static async Edit(ID) {
+  static async GetRaffleById(id) {
+    try {
+      const db = await openDb();
+      return await db.all(
+        `
+          SELECT * FROM DIZIMISTAS_SORTEADOS WHERE dizimista_sorteado_id = ?
+        `,
+        [id],
+      );
+    } catch (e) {
+      console.error(e);
+      return [];
+    }
+  }
+
+  static async Edit(id) {
     try {
       const db = await openDb();
       return await db.all(
@@ -72,7 +87,7 @@ class TranscriptModel {
           SELECT * FROM DIZIMISTAS_SORTEADOS DS INNER JOIN DIZIMISTAS_TOTAIS DT ON
           DT.dizimista_id = DS.dizimista_sorteado WHERE DS.dizimista_sorteado_id = ?
         `,
-        [ID],
+        [id],
       );
     } catch (e) {
       console.error(e);

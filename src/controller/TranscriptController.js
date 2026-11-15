@@ -35,7 +35,7 @@ exports.Register = async (req, res) => {
     if (call) {
       req.flash(
         "error",
-        "Não existe nenhum dizimista cadastro neste mês com esse código",
+        "Não existe nenhum dizimista cadastrado neste mês com esse código",
       );
       return res.redirect("/sorteio-dizimista");
     }
@@ -55,6 +55,16 @@ exports.Register = async (req, res) => {
   }
 };
 
+exports.GetRaffleById = async (id) => {
+  try {
+    const dizimistas = await TranscriptModel.GetRaffleById(id);
+    if (dizimistas.length > 0) return false;
+    return true;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 exports.Edit = async (req, res) => {
   try {
     const { id } = req.params;
@@ -68,6 +78,17 @@ exports.Edit = async (req, res) => {
 exports.Update = async (req, res) => {
   try {
     const { id } = req.params;
+
+    const call = await this.GetRaffleById(id);
+
+    if (call) {
+      req.flash(
+        "error",
+        "Não existe nenhum dizimista cadastrado neste mês com esse código",
+      );
+      return res.redirect("/dizimistas-sorteados");
+    }
+
     const Transcript = new TranscriptModel(req.body);
     const dizimistas = await Transcript.Update(id);
 
