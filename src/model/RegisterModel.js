@@ -71,13 +71,13 @@ class TitherModel {
   async cadastrar() {
     this.valida();
     if (this.errors.length > 0) return;
-
+    const date = new Date().toLocaleString("pt-BR");
     try {
       const db = await openDb();
       await db.run(
         `INSERT INTO DIZIMISTAS_TOTAIS 
-        (dizimista_id, dizimista_nome, dizimista_sobrenome, dizimista_bairro, dizimista_rua, dizimista_numero_casa, dizimista_telefone, dizimista_categoria) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+        (dizimista_id, dizimista_nome, dizimista_sobrenome, dizimista_bairro, dizimista_rua, dizimista_numero_casa, dizimista_telefone, dizimista_categoria, dizimista_date) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [
           this.body.code,
           this.body.name,
@@ -87,6 +87,7 @@ class TitherModel {
           this.body.housenumber,
           this.body.phone,
           this.body.category,
+          date,
         ],
       );
     } catch (e) {
@@ -99,7 +100,7 @@ class TitherModel {
     try {
       const db = await openDb();
       return await db.all(
-        "SELECT * FROM DIZIMISTAS_TOTAIS ORDER BY dizimista_id DESC",
+        "SELECT * FROM DIZIMISTAS_TOTAIS ORDER BY dizimista_date DESC",
       );
     } catch (e) {
       console.error(e);

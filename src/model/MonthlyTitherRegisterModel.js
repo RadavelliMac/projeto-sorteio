@@ -64,7 +64,7 @@ class MonthlyTither {
       return await db.all(
         `
           SELECT * FROM DIZIMISTAS_MENSAIS DM INNER JOIN DIZIMISTAS_TOTAIS DT 
-          ON DM.dizimista_do_mes_id = dizimista_id ORDER BY dizimista_id DESC
+          ON DM.dizimista_do_mes_id = dizimista_id ORDER BY dizimista_date DESC
         `,
       );
     } catch (e) {

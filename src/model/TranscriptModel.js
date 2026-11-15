@@ -17,7 +17,7 @@ class TranscriptModel {
   async Cadastrar() {
     this.valida(true);
     if (this.errors.length > 0) return;
-    const date = new Date().toLocaleDateString("pt-BR");
+    const date = new Date().toLocaleString("pt-BR");
     try {
       const db = await openDb();
       await db.run(
@@ -40,7 +40,7 @@ class TranscriptModel {
       return await db.all(
         `
           SELECT * FROM DIZIMISTAS_SORTEADOS DS INNER JOIN DIZIMISTAS_TOTAIS DT ON
-          DT.dizimista_id = DS.dizimista_sorteado
+          DT.dizimista_id = DS.dizimista_sorteado ORDER BY dizimista_date DESC
         `,
       );
     } catch (e) {
