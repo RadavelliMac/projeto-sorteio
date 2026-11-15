@@ -14,6 +14,21 @@ class TranscriptModel {
       this.errors.push("Resposta inválida");
   }
 
+  static async GetId(id) {
+    try {
+      const db = await openDb();
+      return await db.all(
+        `
+          SELECT * FROM DIZIMISTAS_MENSAIS WHERE dizimista_do_mes_id = ?
+        `,
+        [id],
+      );
+    } catch (e) {
+      console.error(e);
+      return false;
+    }
+  }
+
   async Cadastrar() {
     this.valida(true);
     if (this.errors.length > 0) return;

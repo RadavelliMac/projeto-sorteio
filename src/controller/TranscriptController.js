@@ -15,8 +15,31 @@ exports.Transcript = async (req, res) => {
   }
 };
 
+exports.GetId = async (id) => {
+  try {
+    const dizimistas = await TranscriptModel.GetId(id);
+
+    if (dizimistas.length > 0) return false;
+    return true;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 exports.Register = async (req, res) => {
   try {
+    const { id } = req.body;
+
+    const call = await this.GetId(id);
+
+    if (call) {
+      req.flash(
+        "error",
+        "Não existe nenhum dizimista cadastro neste mês com esse código",
+      );
+      return res.redirect("/sorteio-dizimista");
+    }
+
     const Transcript = new TranscriptModel(req.body);
     const dizimistas = await Transcript.Cadastrar();
 
