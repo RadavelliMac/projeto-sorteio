@@ -30,6 +30,11 @@ exports.Register = async (req, res) => {
   try {
     const { id } = req.body;
 
+    if (!id) {
+      req.flash("error", "Código inválido");
+      return res.redirect("/sorteio-dizimista");
+    }
+
     const call = await this.GetId(id);
 
     if (call) {
