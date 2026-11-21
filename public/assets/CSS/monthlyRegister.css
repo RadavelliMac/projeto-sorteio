@@ -112,3 +112,14 @@ input {
   display: grid;
   place-self: center;
 }
+
+.ErrorMessageFrontendValidator {
+  color: rgb(246, 11, 11);
+  background-color: rgb(249, 219, 224);
+  margin-bottom: 20px;
+  border-radius: 8px;
+  width: 200px;
+  text-align: center;
+  display: grid;
+  place-self: center;
+}
