@@ -22,10 +22,20 @@ class Validator {
     this.category = category.value;
 
     this.errors = 0;
+    this.categories = ["Masculino", "Feminino", "Infantil"];
+    this.regexNumber = /^\d+$/;
+    this.regexPhone = /^\(\d{2}\) 9 \d{4}-\d{4}$/;
   }
 
   Validate() {
-    if (!this.code) this.CreateFieldErrorMessage(code, "Código Inválido!");
+    if (!this.code) {
+      this.CreateFieldErrorMessage(code, "O código é obrigatório!");
+    } else if (!this.regexNumber.test(this.code) || Number(this.code) < 1) {
+      this.CreateFieldErrorMessage(
+        code,
+        "O código deve ser um número inteiro maior que zero!",
+      );
+    }
 
     if (!this.name) this.CreateFieldErrorMessage(nome, "Nome Inválido!");
 
@@ -37,13 +47,35 @@ class Validator {
 
     if (!this.street) this.CreateFieldErrorMessage(street, "Rua Inválida!");
 
-    if (!this.housenumber)
-      this.CreateFieldErrorMessage(housenumber, "Número Inválido!");
+    if (!this.housenumber) {
+      this.CreateFieldErrorMessage(housenumber, "O número é obrigatório!");
+    } else if (
+      !this.regexNumber.test(this.housenumber) ||
+      Number(this.housenumber) < 1
+    ) {
+      this.CreateFieldErrorMessage(
+        housenumber,
+        "O número da casa deve ser um número inteiro maior que zero!",
+      );
+    }
 
-    if (!this.phone) this.CreateFieldErrorMessage(phone, "Telefone Inválido!");
+    if (!this.phone) {
+      this.CreateFieldErrorMessage(phone, "O telefone é obrigatório!");
+    } else if (!this.regexPhone.test(this.phone)) {
+      this.CreateFieldErrorMessage(
+        phone,
+        "Telefone inválido! Use o formato (11) 9 1234-5678.",
+      );
+    }
 
-    if (!this.category)
-      this.CreateFieldErrorMessage(category, "Categoria Inválida!");
+    if (!this.category) {
+      this.CreateFieldErrorMessage(category, "A categoria é obrigatória!");
+    } else if (!this.categories.includes(this.category)) {
+      this.CreateFieldErrorMessage(
+        category,
+        "A categoria informada não é aceita!",
+      );
+    }
   }
 
   CreateFieldErrorMessage(field, message) {
