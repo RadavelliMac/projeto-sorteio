@@ -36,38 +36,38 @@
             
             <% if (dizimistas.length > 0) { %>
 
-            <form action="" method="post">
+            <form action="" class="formSubmit" method="post">
 
                 <% dizimistas.forEach(dizimista => { %>
 
                 <div class="inputs">
                     <label for="name">Código: <span class="requiredField">*</span> </label>
-                    <input type="number" min="0" name="code" placeholder="Ex: 16547" value="<%= dizimista.dizimista_id %>" required class="numberForbidden">
+                    <input type="number" min="0" name="code" placeholder="Ex: 16547" value="<%= dizimista.dizimista_id %>" required class="code numberForbidden">
                 </div>
 
                 <div class="inputs">
                     <label for="name">Nome: <span class="requiredField">*</span> </label>
-                    <input type="text" name="name" placeholder="Ex: José" value="<%= dizimista.dizimista_nome %>" required>
+                    <input type="text" name="name" placeholder="Ex: José" value="<%= dizimista.dizimista_nome %>" required class="name">
                 </div>
     
                 <div class="inputs">
                     <label for="name">Sobrenome: <span class="requiredField">*</span> </label>
-                    <input type="text" name="surname" placeholder="Ex: José" value="<%= dizimista.dizimista_sobrenome %>" required>
+                    <input type="text" name="surname" placeholder="Ex: José" value="<%= dizimista.dizimista_sobrenome %>" required class="surname">
                 </div>
     
                 <div class="inputs">
                     <label for="neighborhood">Bairro: <span class="requiredField">*</span> </label>
-                    <input type="text" name="neighborhood" placeholder="Ex: Aventureiro" value="<%= dizimista.dizimista_bairro %>" required>
+                    <input type="text" name="neighborhood" placeholder="Ex: Aventureiro" value="<%= dizimista.dizimista_bairro %>" required class="neighborhood">
                 </div>
     
                 <div class="inputs">
                     <label for="street">Rua: <span class="requiredField">*</span> </label>
-                    <input type="text" name="street" placeholder="Ex: Adolfo Morbis" value="<%= dizimista.dizimista_rua %>" required>
+                    <input type="text" name="street" placeholder="Ex: Adolfo Morbis" value="<%= dizimista.dizimista_rua %>" required class="street">
                 </div>
     
                 <div class="inputs">
                     <label for="number">Número: <span class="requiredField">*</span> </label>
-                    <input type="number" min="0" name="housenumber" placeholder="Ex: 1111" value="<%= dizimista.dizimista_numero_casa %>" required class="numberForbidden">
+                    <input type="number" min="0" name="housenumber" placeholder="Ex: 1111" value="<%= dizimista.dizimista_numero_casa %>" required class="housenumber numberForbidden">
                 </div>
     
                 <div class="inputs">
@@ -77,7 +77,7 @@
 
                 <div class="inputs">
                     <label for="category">Categoria: <span class="requiredField">*</span> </label>
-                    <select name="category" id="category" required>
+                    <select name="category" id="category" required class="category">
                         <option value="Masculino" <%= dizimista.dizimista_categoria === 'Masculino' ? 'selected' : '' %>>Masculino</option>
                         <option value="Feminino" <%= dizimista.dizimista_categoria === 'Feminino' ? 'selected' : '' %>>Feminino</option>
                         <option value="Infantil" <%= dizimista.dizimista_categoria === 'Infantil' ? 'selected' : '' %>>Infantil</option>
@@ -115,7 +115,8 @@
 
         <%- include('common/footer') %>
 
-    <script src="/assets/JS/validators/regex.js"></script>
+<script src="/assets/JS/validators/regex.js"></script>
+<script src="/assets/JS/validators/fieldValidators.js"></script>
 
 </body>
 </html>

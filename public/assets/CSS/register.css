@@ -121,7 +121,7 @@ input::placeholder {
   margin-bottom: 20px;
   border-radius: 8px;
   width: 200px;
-
+  text-align: center;
   display: grid;
   place-self: center;
 }
