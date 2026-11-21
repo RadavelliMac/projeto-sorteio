@@ -101,3 +101,14 @@ h2 {
   border: 2px solid rgb(40, 20, 20);
   background-color: rgb(90, 44, 44);
 }
+
+.ErrorMessageFrontendValidator {
+  color: rgb(246, 11, 11);
+  background-color: rgb(249, 219, 224);
+  margin-bottom: 20px;
+  border-radius: 8px;
+  width: 200px;
+  text-align: center;
+  display: grid;
+  place-self: center;
+}

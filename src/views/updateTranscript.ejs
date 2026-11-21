@@ -24,7 +24,7 @@
             
             <% if (dizimistas.length > 0) { %>
 
-            <form action="" method="post">
+            <form action="" class="formSubmit" method="post">
 
                 <% dizimistas.forEach(dizimista => { %>
 
@@ -81,6 +81,8 @@
     </div>
 
         <%- include('common/footer') %>
+
+<script src="/assets/JS/validators/transcriptValidator.js"></script>
 
 </body>
 </html>
