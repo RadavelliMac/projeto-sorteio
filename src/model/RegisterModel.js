@@ -20,12 +20,13 @@ class TitherModel {
 
   valida() {
     const categories = ["Masculino", "Feminino", "Infantil"];
-    const regex = /^\d+$/;
+    const regexNumber = /^\d+$/;
+    const regexPhone = /^\(\d{2}\) 9 \d{4}-\d{4}$/;
 
     if (!this.body.code || isNaN(this.body.code)) {
       this.errors.push("O código deve ser um valor numérico válido.");
     }
-    if (!String(this.body.code).match(regex) || this.body.code < 1) {
+    if (!String(this.body.code).match(regexNumber) || this.body.code < 1) {
       this.errors.push("Esse formato de número de código é inválido");
     }
 
@@ -38,14 +39,14 @@ class TitherModel {
       this.errors.push("O número da casa deve ser um valor numérico válido.");
     }
     if (
-      !String(this.body.housenumber).match(regex) ||
+      !String(this.body.housenumber).match(regexNumber) ||
       this.body.housenumber < 1
     ) {
       this.errors.push("Esse formato de número de casa é inválido");
     }
 
     if (!this.body.phone) this.errors.push("O telefone é obrigatória.");
-    if (!this.body.phone.match(/^\(\d{2}\)\s\d{4,5}-\d{4}$/))
+    if (!this.body.phone.match(regexPhone))
       this.errors.push("Telefone inválido");
 
     if (!this.body.category) this.errors.push("A categoria é obrigatória");
