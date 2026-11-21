@@ -17,10 +17,10 @@
     <div class="RaffleTither">
 
             <div class="form">
-                <form action="/sorteio-dizimista" method="post">
+                <form action="/sorteio-dizimista" class="formFirst" method="post">
                     <div class="inputs">
                         <label for="category">Categoria:</label>
-                        <select name="category" id="category" required>
+                        <select name="category" id="category" required class="category">
                             <option class="categoryOption" value="Masculino" <%= typeof selectedCategory !== 'undefined' && selectedCategory === 'Masculino' ? 'selected' : '' %>>Masculino</option>
                             <option class="categoryOption" value="Feminino" <%= typeof selectedCategory !== 'undefined' && selectedCategory === 'Feminino' ? 'selected' : '' %>>Feminino</option>
                             <option class="categoryOption" value="Infantil" <%= typeof selectedCategory !== 'undefined' && selectedCategory === 'Infantil' ? 'selected' : '' %>>Infantil</option>
@@ -56,7 +56,7 @@
                         </div>
     
                         <div class="form">
-                            <form action="/dizimistas-sorteados/" method="post">
+                            <form action="/dizimistas-sorteados/" class="formSecond" method="post">
                                 <div class="inputs">
                                     <label for="titherPresent">Dizimista Presente?: <span class="requiredField">*</span> </label>
                                     <select name="titherPresent" id="present" required>
@@ -223,6 +223,7 @@ drawWheel();
 </script>
 
 <script src="/assets/JS/frontend/raffleTithers.js"></script>
+<script src="/assets/JS/validators/titherRaffleFieldValidatorFirst.js"></script>
 
 </body>
 </html>
