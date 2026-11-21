@@ -36,7 +36,7 @@ label {
 }
 
 input::placeholder {
-  padding: 5px;
+  padding: 10px;
 }
 
 #category {
@@ -68,6 +68,11 @@ input::placeholder {
   transform: translateY(-8px);
   border: 2px solid rgb(40, 20, 20);
   background-color: rgb(90, 44, 44);
+}
+
+.requiredField {
+  color: rgb(212, 20, 20);
+  font-size: 25px;
 }
 
 .visualizerInfos a {

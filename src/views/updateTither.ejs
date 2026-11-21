@@ -41,42 +41,42 @@
                 <% dizimistas.forEach(dizimista => { %>
 
                 <div class="inputs">
-                    <label for="name">Código:</label>
+                    <label for="name">Código: <span class="requiredField">*</span> </label>
                     <input type="number" min="0" name="code" placeholder="Ex: 16547" value="<%= dizimista.dizimista_id %>" required class="numberForbidden">
                 </div>
 
                 <div class="inputs">
-                    <label for="name">Nome:</label>
+                    <label for="name">Nome: <span class="requiredField">*</span> </label>
                     <input type="text" name="name" placeholder="Ex: José" value="<%= dizimista.dizimista_nome %>" required>
                 </div>
     
                 <div class="inputs">
-                    <label for="name">Sobrenome:</label>
+                    <label for="name">Sobrenome: <span class="requiredField">*</span> </label>
                     <input type="text" name="surname" placeholder="Ex: José" value="<%= dizimista.dizimista_sobrenome %>" required>
                 </div>
     
                 <div class="inputs">
-                    <label for="neighborhood">Bairro:</label>
+                    <label for="neighborhood">Bairro: <span class="requiredField">*</span> </label>
                     <input type="text" name="neighborhood" placeholder="Ex: Aventureiro" value="<%= dizimista.dizimista_bairro %>" required>
                 </div>
     
                 <div class="inputs">
-                    <label for="street">Rua:</label>
+                    <label for="street">Rua: <span class="requiredField">*</span> </label>
                     <input type="text" name="street" placeholder="Ex: Adolfo Morbis" value="<%= dizimista.dizimista_rua %>" required>
                 </div>
     
                 <div class="inputs">
-                    <label for="number">Número:</label>
-                    <input type="number" min="0" name="housenumber" placeholder="400" value="<%= dizimista.dizimista_numero_casa %>" required class="numberForbidden">
+                    <label for="number">Número: <span class="requiredField">*</span> </label>
+                    <input type="number" min="0" name="housenumber" placeholder="Ex: 1111" value="<%= dizimista.dizimista_numero_casa %>" required class="numberForbidden">
                 </div>
     
                 <div class="inputs">
-                    <label for="number">Telefone:</label>
-                    <input type="text" name="phone" placeholder="4002-8922" value="<%= dizimista.dizimista_telefone %>" class="phone">
+                    <label for="number">Telefone: <span class="requiredField">*</span> </label>
+                    <input type="text" name="phone" placeholder="Ex: (88) 9 8888-8888" value="<%= dizimista.dizimista_telefone %>" class="phone">
                 </div>
 
                 <div class="inputs">
-                    <label for="category">Categoria:</label>
+                    <label for="category">Categoria: <span class="requiredField">*</span> </label>
                     <select name="category" id="category" required>
                         <option value="Masculino" <%= dizimista.dizimista_categoria === 'Masculino' ? 'selected' : '' %>>Masculino</option>
                         <option value="Feminino" <%= dizimista.dizimista_categoria === 'Feminino' ? 'selected' : '' %>>Feminino</option>
